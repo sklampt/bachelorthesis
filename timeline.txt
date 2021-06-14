@@ -1,0 +1,35 @@
+Timeline BA thesis - Sina sina_klampt
+
+TO DO: fix milestones
+
+June
+    - research on formulas & compare to code
+        - gather ideas
+    - implement code
+    - first experiments
+        - 3 parametrizations simplified (eg)
+
+July
+    - further deepen knowledge
+    - new experiments
+        - ...
+        - analysis
+
+August
+    - possibly get even better results from new experiments
+    - begin to write thesis
+        - introduction
+        - methods
+    - get first draft
+
+September
+    - write rest of thesis
+        - main
+        - conclusion
+        - abstract
+    - hand in by mid-end of month
+
+
+    riming hardest
+    ice (easier)
+    accretion (good example - complicated at beginning, a lot to simplfy)
