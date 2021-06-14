@@ -1,0 +1,125 @@
+***BASH COMMANDS***
+
+
+*Euler*
+
+# download my branch (only first time)
+svn checkout https://svn.iac.ethz.ch/external/echam-hammoz/echam6-hammoz/branches/sina_klampt ehm_sklampt
+
+# login
+ssh -XY sklampt@euler.ethz.ch
+
+# Ulrike's experiments -> look at test782_07
+cd /cluster/work/climate/proskeu/project/test782_07
+	cd Raw # important files: activ, echamm, echam
+		# module load ncview/2.1.2
+		ncdump -h test782_07_200301.01_activ.nc
+		ncview test_07_200301.01_activ.nc
+	cd Data # dump.txt -> infos about consts etc
+	cd Sandbox # idk
+	
+# src files
+cd bachelorarbeit/ehm_sklampt/src
+	vim mo_cloud_micro_2m.f90 # aggregation/riming/accretion implementation
+	
+# when changing code
+	# always start and end with: !>>SK #<791> and !SK #<791>
+	# add: !SK TODO or !SK <comment> next to code
+
+	# switch as condition
+	IF (<lsimple_accr>) THEN 
+		...
+		# when using numbers: add ._dp
+	ELSE
+		...
+	END IF
+
+	# add switch <lsimple_accr> to all necessary files (use lemuphase_accr as reference)
+	# !!! important: if adding a new line at end, also add ", &" to line above
+		cd bachelorarbeit/ehm_sklampt/src
+			grep lemuphase_accr *.f90 # to check where it needs to be added
+			grep <lsimple_accr> *.f90 # as comparison
+			# most likely in:
+				- mo_cloud_micro_2m.f90
+				- mo_param_switches.f90
+				- setphys.f90
+
+		cd bachelorarbeit/ehm_sklampt/include
+			grep lemuphase_accr *.inc # to check where it needs to be added
+			grep <lsimple_accr> *.inc # as comparison
+			# most likely in: 
+				- physctl.inc
+
+# Compile Code (on euler)
+cd bachelorarbeit/ehm_sklampt
+	make distclean
+	./config/createMakefiles.pl
+	autoreconf -i --no-recursive
+	conf_echam
+	make -j 10
+	make install
+
+# Run code
+cd bachelorarbeit/ehm_sklampt/my_experiments
+	prepare_run.sh -r <test0> <test1> # folder <test1> based on folder <test0>
+	vimdiff <test0>/settings_<test0> <test1>/settings_<test1> # compare the two "settings_..." files
+	cd <test1>
+
+	vim settings_<test1>
+		walltime="00:15:00"
+		init_restart_flag=.false.
+
+	jobsubm_echam.sh -d settings_<test1>
+	bsub -R "span[ptile=24]" -G es_lohma -n 240 < ./echam_jobscript_<test1>.sh
+
+# Post processing
+cd /cluster/work/climate/sklampt/project
+	# version 1
+		prep_proc.sh -y 2003-2003 <test0> 
+	# version 2
+		cd <test0>/Sandbox
+		vim wrap_general_proc.sh
+			# change the following:
+				- yb=2003
+				- ye=2003
+				- yb_eq=2003
+				- codefile_date="200301.01"
+		cd ../.. (/cluster/work/climate/sklampt/project)
+		prep_proc.sh <test0>
+	
+cd test0/Sandbox
+	./wrap_general_proc.sh
+
+# Commit 
+cd bachelorarbeit/ehm_sklampt
+	svn status
+	svn commit -m "... IssueID #<791>"
+
+	# on redmine 
+		1) reload repository
+		2) check if issue has been updated with commit
+
+
+
+*on Redmine*
+
+# create new Issue for each process
+	new issue
+		tracker: feature
+		description: don't forget
+			"feature is switchable with: <lsimple_accr> (default FALSE, does not change original)"
+		assignee: Sina Klampt
+		watcher: Ulrike Proske
+	check with preview
+	create
+
+
+
+*fog/fog2*
+
+# login
+ssh sklampt@fog.ethz.ch
+
+# files
+cd /net/n2o/wolke # for /wolke
+cd /net/n2o/wolke_scratch # for /wolke_scratch
