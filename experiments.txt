@@ -5,6 +5,10 @@ optimizable parts with taylor series expansion:
     - lsimple_accr:
         - EXP
 
+init: lsimple_accr & lsimple_aggr both FALSE
+791:  lsimple_accr TRUE & lsimple_aggr FALSE
+793:  lsimple_aggr TRUE & lsimple_accr FALSE
+
 EXPERIMENT              NUMBER              DESCRIPTION SETTINGS FILE               DESCRIPTION CLOUD_MICRO FILE                        ERROR
 init                    77109               w/o c1_diag                             if-else same code
 791                     77113               w/o c1_diag                             "                                                   floating invalid operation, line 1380: Error occurred in MO_OUTPUT:OUT_STREAM, aborted (return value 6)
