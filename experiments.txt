@@ -23,3 +23,6 @@ init                    77109               w/o c1_diag                         
 793                     77122               "                                       3rd order taylor (log), corrections vector x        floating invalid operation, line 4648: Error occurred in MO_CLOUD_MICRO_2M:PRECIP_FORMATION_COLD, aborted (return value 134)
 init                    77123               w/o c1_diag                                                                                 floating invalid operation, line 956: Error occurred in MO_MVSTREAM:MVSTREAM_ACCUMULATE_OTHERS, aborted (return value 6)
 init                    77124               w/o mvstream (last part)                
+init                    77125               / also uncommented                      
+791                     77126               "                                       if-else same code
+793                     77127               "                                       "
