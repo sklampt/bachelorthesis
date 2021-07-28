@@ -29,5 +29,5 @@ init                    77125               / also uncommented                  
 
 
 UP comments:
-- The MO_OUTPUT:OUT_STREAM error seems to have been due to a full SCRATCH (which makes sense because then the model would not have been able to write output), because every run provoked this error and it disappeared when I deleted files on SCRATCH -> solved!
+- The MO_OUTPUT:OUT_STREAM might be related to a full SCRATCH, but I see conflicting evidence
 - The MO_MVSTREAM:MVSTREAM_ACCUMULATE_OTHERS error is provoked by trying to take the mean of c1_diag (by adding it to MVSTREAM at the bottom of the settings file). I suggest that I try to look into why that is, and you just leave c1_diag alone for now, excluding it from the settings file, because those runs seem fine to me. -> UP TODO
