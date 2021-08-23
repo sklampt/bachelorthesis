@@ -50,15 +50,27 @@ cd bachelorarbeit/ehm_sklampt/src
 			# most likely in: 
 				- physctl.inc
 
-# Compile Code (on euler)
-cd bachelorarbeit/ehm_sklampt
-	make distclean
-	./config/createMakefiles.pl
-	autoreconf -i --no-recursive
-	conf_echam
-	make -j 10
-	make install
+# Compile Code
+intel:
+	cd bachelorarbeit/ehm_sklampt
+		make distclean
+		./config/createMakefiles.pl
+		autoreconf -i --no-recursive
+		conf_echam
+		make -j 10
+		make install
 
+NAGfor (only on aerosol):
+	cd echam/sina_klampt
+		make distclean
+		module unload PrgEnv-intel
+		module load PrgEnv-nag/6.0
+		./config/createMakefiles.pl
+		autoreconf -i --no-recursive
+		conf_echam
+		make -j 10
+		make install
+ 
 # Run code
 cd bachelorarbeit/ehm_sklampt/my_experiments
 	prepare_run.sh -r <test0> <test1> # folder <test1> based on folder <test0>
@@ -68,9 +80,16 @@ cd bachelorarbeit/ehm_sklampt/my_experiments
 	vim settings_<test1>
 		walltime="00:15:00"
 		init_restart_flag=.false.
+		ltimer = .true.
+		# add switch to PHYSCTL list and set to true
+		<lsimple_accr> = .true.
 
 	jobsubm_echam.sh -d settings_<test1>
 	bsub -R "span[ptile=24]" -G es_lohma -n 240 < ./echam_jobscript_<test1>.sh
+
+	// qsub ./echam_jobscript_test793_00.sh     # in case of NAGfor compiler
+
+
 
 # Post processing
 cd /cluster/work/climate/sklampt/project
@@ -89,6 +108,17 @@ cd /cluster/work/climate/sklampt/project
 	
 cd test0/Sandbox
 	./wrap_general_proc.sh
+
+
+
+# Copy files from Euler to local
+scp euler:~remote_dir/file.c local_dir/
+
+# Copy files from local to Euler
+scp file.c euler:~/remote_dir/
+scp -r local_dir euler:~/remote_dir/
+
+
 
 # Commit 
 cd bachelorarbeit/ehm_sklampt
@@ -123,3 +153,17 @@ ssh sklampt@fog.ethz.ch
 # files
 cd /net/n2o/wolke # for /wolke
 cd /net/n2o/wolke_scratch # for /wolke_scratch
+
+
+
+
+
+*plot - vertikale exi  linie in karte wegbekommen*
+
+# make it see the data as continuous
+data, lon = add_cyclic_point(data, coord=lons)
+data_sh, lon = add_cyclic_point(np.real(result(phi, theta)), coord=lons) 
+
+data, lon = add_cyclic_point(data, coord=lons) 
+
+from cartopy.util import add_cyclic_point 
