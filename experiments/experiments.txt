@@ -26,7 +26,8 @@ init                    77124               w/o mvstream (last part)            
 init                    77125               / also uncommented                                                                          floating invalid operation, line 1380: Error occurred in MO_OUTPUT:OUT_STREAM, aborted (return value 6)
 791                     77126               "                                       if-else same code                                   floating invalid operation, line 1380: Error occurred in MO_OUTPUT:OUT_STREAM, aborted (return value 6)
 793                     77127               "                                       "                                                   floating invalid operation, line 1380: Error occurred in MO_OUTPUT:OUT_STREAM, aborted (return value 6)
-
+793                     77185               new tuning parameters                   ztmp1 = -2000 (instead of 2)                        aborted (signal 6), model run stopped with return value 134
+793                     181829276 (Euler)   new tuning parameters                   ztmp1 = -2000 (instead of 2)
 
 UP comments:
 - The MO_OUTPUT:OUT_STREAM might be related to a full SCRATCH, but I see conflicting evidence
