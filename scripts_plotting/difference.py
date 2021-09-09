@@ -19,13 +19,13 @@ for i in range(len(parameter)):
 	# Opening netCDF files
 	run_nr = 1
 	run_nr_diff = 2
-	
+
 	### TODO: update number at end (if there is more than one plot)
-	plot_name = str('Diff_'+parameter[i]+'_01')
-	
+	plot_name = str('Diff_'+parameter[i]+'_100_new')
+
 	### TODO: update source folder
 	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test_init_ws/test_init/'.format(run_nr)+'multi_annual_means_test_init_2003-2003'.format(run_nr)+'.nc')
-	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_01/'.format(run_nr_diff)+'multi_annual_means_test793_01_2003-2003'.format(run_nr_diff)+'.nc')
+	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_100/'.format(run_nr_diff)+'multi_annual_means_test793_100_2003-2003'.format(run_nr_diff)+'.nc')
 
 	# Access variables, e.g.
 	d1[parameter[i]]
@@ -40,7 +40,7 @@ for i in range(len(parameter)):
 	#lons2 = d2['lon'][:]
 
 	#cm = matplotlib.colors.ListedColormap((sns.color_palette("YlGn", n_colors=7)).as_hex())
-	cm = matplotlib.colors.ListedColormap((sns.color_palette("ch:rot=-.25,s=.25")).as_hex())
+	cm = matplotlib.colors.ListedColormap((sns.color_palette("vlag", n_colors=7)).as_hex())
 	#cmap.set_bad(color='grey', alpha = 1.)
 
 	fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5.5,4))
@@ -59,7 +59,7 @@ for i in range(len(parameter)):
 	#m = np.ma.masked_where(np.isnan(hist2dplot),hist2dplot)
 	# x and y are bounds, so z should be the value *inside* those bounds.
 	# Therefore, remove the last value from the z array.
-	datavar = d1[parameter[i]][0,:,:] 
+	datavar = d1[parameter[i]][0,:,:]
 	datavar_2 = d2[parameter[i]][0,:,:]
 	datavar_diff = datavar_2 - datavar
 
@@ -83,5 +83,4 @@ for i in range(len(parameter)):
 	ax.yaxis.set_major_formatter(lat_formatter)
 
 	### TODO: update destination folder
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_01/difference/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
-
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_100/difference/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
