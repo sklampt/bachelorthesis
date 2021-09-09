@@ -1,0 +1,54 @@
+zris(1:kproma)  = MERGE(ztmp3(1:kproma), 1._dp, ll1(1:kproma))   !SF 1. could be whatever, just not 0.
+zdiag02(1:kproma) = zris(1:kproma)
+zdiag05(1:kproma) = picnc(1:kproma)
+!UP comment: end of size computation needed for aggregation
+
+!--- temperature dependent collision efficiency (zcolleffi)
+! >>SK: #793
+ztmp1(1:kproma)     = fact_coll_eff*(ptp1tmp(1:kproma)-tmelt) !SF See #471
+!UP comment: aggregation of ice crystals starts here
+zc1(1:kproma) = 17.5_dp / crhoi * prho(1:kproma) * pqrho(1:kproma)**0.33_dp
+ztmp1(1:kproma)     = EXP(ztmp1(1:kproma))
+zcolleffi(1:kproma) = MERGE(ztmp1(1:kproma), 0._dp, ll1(1:kproma))
+IF (lsimple_aggr) THEN
+      !UP: very simple simplification, just setting the aggregation rate to 2
+      ! note that only looking at aggregation, this would allow for getting
+      ! rid of a lot of previous calculations, which now still need to be kept
+      ! for other computations
+      ztmp1(1:kproma) = 200._dp
+      ! ones(1:kproma)      = 1._dp
+
+      ! second order taylor series expansion e^x = 1 + x^1/1! + x^2/2!
+      ! ztmp1(1:kproma) = 1._dp + ztmp1(1:kproma) + (ztmp1(1:kproma)**2._dp)/2._dp
+
+      ! ztmp1(1:kproma)     = ones(1:kproma) + ztmp1(1:kproma) !SK 1st order taylor series expansion for EXP(ztmp1(1:kproma))
+
+      !SK LOG10(1e4._dp*zris(1:kproma))
+      !   = 4 + LOG10(zris(1:kproma))
+      !   = 4 + LOG(zris(1:kproma))/LOG(10)
+      !
+      !   a = zris     b = 4     x = a * 10^b
+      !   a = (1+x)/(1-x)     x = (a-1)/(a+1)
+      !   LOG(a) = LOG((1+x)/(1-x)) = 2*(x + x^3/3 + x^5/5)
+
+      ! x(1:kproma) = (zris(1:kproma) - ones(1:kproma)) / (zris(1:kproma) + ones(1:kproma))
+      !x(1:kproma) = (zris(1:kproma) - 1._dp) / (zris(1:kproma) + 1._dp)
+
+      !SK 3rd order taylor series expansion for LOG((1+x)/(1-x))
+      !logarithm(1:kproma) = 2._dp * (x(1:kproma) + (x(1:kproma)**3._dp)/3._dp &
+      !                      + (x(1:kproma)**5._dp)/5._dp + (x(1:kproma)**7._dp)/7._dp)
+      ! ones(1:kproma)      = 4._dp
+      ! logarithm(1:kproma) = ones(1:kproma) + logarithm(1:kproma) / LOG(10._dp)
+      !logarithm(1:kproma) = 4._dp + logarithm(1:kproma) / LOG(10._dp)
+      !logarithm(1:kproma) = LOG10(1.e4_dp*zris(1:kproma))
+      !ztmp1(1:kproma)     = -6._dp / zc1(1:kproma) * logarithm(1:kproma) !SF zdt2
+ELSE
+      ztmp1(1:kproma) = -6._dp / zc1(1:kproma) * LOG10(1.e4_dp*zris(1:kproma)) !SF zdt2
+END IF
+zdiag01(1:kproma) = MERGE(ztmp1(1:kproma), 0._dp, ll1(1:kproma))
+zdiag04(1:kproma) = pqrho(1:kproma)
+zdiag03(1:kproma) = prho(1:kproma)
+
+! <<SK
+!SF Note: 1.e-4 = minimum size of snow flake
+ztmp1(1:kproma) = ccsaut / ztmp1(1:kproma)
