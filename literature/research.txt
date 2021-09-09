@@ -1,0 +1,30 @@
+### on aggregation ###
+
+cloud_microphysics_20111208.pdf:
+	page 2:
+	- microphysics of cold clouds
+		- crystal growth
+		
+	page 29:
+	- growth by aggregation
+	- snowflakes formed by aggregation
+	
+	page 30:
+	- dimensions of crystal [mm]
+	
+	page 33:
+	- collection efficiency for aggregation
+		- not yet determined theoretically
+		- observations:
+			- open structures (e.g. dendrites) more likely stick to other ice crystals
+			- sticking more likely at higher temperatures
+		- significant aggregation only at T > -10 deg celsius
+	
+	page 34:
+	- mass growth rate for aggregational growth
+		dm/dt = E * w_i * pi * R² * (v(R) - v(r))
+			E: 		mean collection efficiency
+			w_i:	cloud ice water content
+			v:		fall speed of crystals/droplets
+			R:		radius of collector crystal
+			r:		radius of supercooled droplets
