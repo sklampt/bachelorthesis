@@ -1,0 +1,106 @@
+### on aggregation ###
+
+cloud_microphysics_20111208.pdf:
+	page 2:
+	- microphysics of cold clouds
+		- crystal growth
+		
+	page 14:
+	- illustration of aggregation & riming etc.
+
+	page 29:
+	- growth by aggregation
+	- snowflakes formed by aggregation
+	
+	page 30:
+	- dimensions of crystal [mm]
+	
+	page 33:
+	- collection efficiency for aggregation
+		- not yet determined theoretically
+		- observations:
+			- open structures (e.g. dendrites) more likely stick to other ice crystals
+			- sticking more likely at higher temperatures
+		- significant aggregation only at T > -10 deg celsius
+	
+	page 34:
+	- mass growth rate for aggregational growth
+		dm/dt = E * w_i * pi * R² * (v(R) - v(r))
+			E: 		mean collection efficiency
+			w_i:	cloud ice water content
+			v:		fall speed of crystals/droplets
+			R:		radius of collector crystal
+			r:		radius of supercooled droplets
+
+
+cold_cloud_microphysics_acp-21-1485-2021.pdf:
+	page 1:
+	- largest sink (with accretion) for ice crystals over tropical land masses 
+
+	page 5:
+	- aggregation of ice crystals based on approach described in Lin et al. (1983)
+	- collection efficiency depends on snow crystal size (Lohmann, 2004)
+	- collection efficiency of accretion depends on temperature (Levkov et al., 1992)
+	
+	page 8:
+	- major physical removal process of ice crystals in all simulations
+		- order: 10 m-3s-1
+		- about double the rate of accretion
+
+
+Lohmann2017_Article_AnthropogenicAerosolInfluences.pdf:
+	page 2:
+	- mixed-phase clouds (MPC) thermodynamically unstable:
+		- saturation vapor pressure (svp) over ice < over supercooled liquid water 
+		- if environmental vapor pressure lies btw. svp of supercooled liquid water and ice:
+			- ice crystals grow at expense of evaporating water droplets:
+			  Wegener-Bergeron- Findeisen (WBF) process
+		
+
+UP_main_acp_20210826.pdf:
+	page 5:
+	- has two ice crystals sticking together -> forming a snowflake
+	- differentiation with accretion (snowflake precipitate, ice crystals smaller and remain in cloud)
+
+	page 11:
+	- turning off aggregation has largest effect on model output
+		- IWP doubled
+		- CC increase
+		- precipitation decrease
+	- aggregation is removal process for ice crystals -> leads to increase of ice in atmosphere
+	- IWP in ECHAM-HAM only counts ice crystals not snow
+
+	page 12:
+	- inhibition of aggregation inflicts similarly large increase in LWP as riming
+		- aggr includes no direct interaction with liquid droplets
+		- aggr acts as threshold process for CMP (accr, rim both need snowflakes)
+		- when aggr turned off -> accr and rim consequently inhibited as well
+
+	page 15:
+	- aggr = dominant influence for most cloud variables (ICNC, ICC, LCC, CC, IWP, LCRE)
+
+	page 16:
+	- in Bacer et al. (2021): aggr contributes about twice as much as accr to ICNCs (self-collection has negligible role)
+	- here: influence of aggr dwarfs that of accr in terms of sensitivity indices and process rates
+	- explanation: slightly different model version, different tuning 
+
+	page 20:
+	- variables that had total sensitivity indices for aggr of over 0.7 (IWP, longwave/shortwave cloud
+	  radiactive effect, CC, ICNC) -> dominant effect of aggr present on all length scales
+
+	page 21:
+	- in response to ECHAM-HAM inhibition of self-collection or accr negligible, while for riming and aggr
+	  at least a less accurate representation can be appropriate
+	- potential benefit in reduction of CPU time per model simulation
+		- only about 0.2% of total computing time can be saved
+		- in 10y simulation -> 1 more week of simulation (negligible in comparison to computing needed in model resolution)
+
+	page 23:
+	- ice crystal aggregation acts as a threshold process
+		- phasing it causes model to deviate
+		- when turned off: deviation immense
+	- phasing of aggr most dominant impact by far (for model output)
+	- shallow slope of response surface around default η_i = 1 hints that slight modifications of their representations
+	  may leave model output unchanged (with PPE)
+	- if one would want to make representation of one process more accurate: aggregation
+	- simplifications to make model more interpretable, not cheaper
