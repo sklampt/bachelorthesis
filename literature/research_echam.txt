@@ -1,0 +1,10 @@
+### on ECHAM-HAM ###
+
+echam_hammoz_gmd-121643-2019.pdf: (part 1)
+    page 1:
+    ...
+
+
+echam_hammoz_pt2_gmd-12-3609-2019.pdf: (part 2)
+    page 1:
+    ...
