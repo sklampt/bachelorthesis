@@ -97,14 +97,14 @@ if __name__ == '__main__':
     rho_inv = np.arange(1., 8.5, 0.05)    # pqrho -> inv. air density [m3/kg]
     #ris     = np.arange(0., 1., 0.015)   # zris
     r_iv = np.arange(1e-6, 99e-6, 1e-6)  # zris -> size ice crystals [mm]
-    import IPython; IPython.embed()
-    array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
-    for i, rho in enumerate(rho_air):
+    #import IPython; IPython.embed()
+    array_alpha = np.zeros((np.shape(rho_inv)[0],np.shape(r_iv)[0]))
+    for i, rho in enumerate(rho_inv):
         for j, r in enumerate(r_iv):
-            array_alpha[i,j] = alpha1(rho, r)
-    x = np.zeros(np.shape(rho_air)[0]+1)
-    x[0] = rho_air[0]-0.1/2
-    x[1:] = rho_air[:]+0.1/2
+            array_alpha[i,j] = - alpha2(rho, r)
+    x = np.zeros(np.shape(rho_inv)[0]+1)
+    x[0] = rho_inv[0]-0.05/2
+    x[1:] = rho_inv[:]+0.05/2
     y = np.zeros(np.shape(r_iv)[0]+1)
     y[0] = r_iv[0]-1e-6/2
     y[1:] = r_iv[:]+1e-6/2

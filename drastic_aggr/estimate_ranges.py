@@ -41,7 +41,7 @@ output_path = 'out/'
 save_attr = '_gamma220'
 
 def alpha(rho_air, r_iv):
-    gamma = 220 #TODO: it looks like this is different in the Lohmann and Roeckner (1996) paper than in the code; 220 vs. 95
+    gamma = 1 #TODO: it looks like this is different in the Lohmann and Roeckner (1996) paper than in the code; 220 vs. 95
     rho_sigma = 1.3 #kg/m^3
     rho_ice = 500 #kg/m^3
     r_so = 1e-4 #m
