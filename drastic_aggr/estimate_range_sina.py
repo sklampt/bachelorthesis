@@ -47,8 +47,9 @@ def alpha1(rho_air, r_iv):
     rho_ice = 500   # crhoi [kg/m^3]
     r_so = 1e-4     # [m]
 
-    zc1 = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / rho_ice
-    alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    #zc1 = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / rho_ice
+    #alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    alpha = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
     return alpha
 
 # range for air density and inverse air density, ice crystal size fix
@@ -92,8 +93,8 @@ def plot_hist(array_alpha):
     plt.close()
 
 if __name__ == '__main__':
-    rho_air = np.arange(0.25,1.47,0.1) # prho -> air density [kg/m3]
-    rho_inv = np.arange(1., 8.5, 0.5)    # pqrho -> inv. air density [m3/kg]
+    rho_air = np.arange(0.25,1.47,0.0075) # prho -> air density [kg/m3]
+    rho_inv = np.arange(1., 8.5, 0.05)    # pqrho -> inv. air density [m3/kg]
     #ris     = np.arange(0., 1., 0.015)   # zris
     r_iv = np.arange(1e-6, 99e-6, 1e-6)  # zris -> size ice crystals [mm]
     import IPython; IPython.embed()
