@@ -156,6 +156,15 @@ cd /net/n2o/wolke_scratch # for /wolke_scratch
 
 
 
+*n2o*
+
+# environments
+module load conda
+conda env list
+conda activate iacpy3_2020
+// conda deactivate
+
+
 
 
 *plot - vertikale exi  linie in karte wegbekommen*
