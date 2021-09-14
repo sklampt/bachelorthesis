@@ -33,7 +33,7 @@ from math import degrees, radians, cos, sin, acos
 
 import seaborn as sns
 
-plt.style.use(matplotlib.get_configdir()+'/paper_phasingcmp.mplstyle')
+#plt.style.use(matplotlib.get_configdir()+'/paper_phasingcmp.mplstyle')
 plt.rc('axes', axisbelow=True)
 
 cm = matplotlib.colors.ListedColormap(sns.color_palette('Blues', 6).as_hex())
@@ -54,7 +54,7 @@ def alpha1(rho_air, r_iv):
 # range for air density and inverse air density, ice crystal size fix
 def alpha2(rho_air, rho_inv):
     rho_ice = 500   # crhoi [kg/m^3]
-    ris = 0.8e-3       # [m]
+    ris = 0.8e-3    # [m]
     r_so = 1e-4     # [m]
 
     zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
