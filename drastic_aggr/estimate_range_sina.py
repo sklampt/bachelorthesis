@@ -92,8 +92,8 @@ def plot_hist(array_alpha):
     plt.close()
 
 if __name__ == '__main__':
-    rho_air = np.arange(0.25,1.47,0.015) # prho -> air density [kg/m3]
-    rho_inv = np.arange(1., 8.5, 0.1)    # pqrho -> inv. air density [m3/kg]
+    rho_air = np.arange(0.25,1.47,0.1) # prho -> air density [kg/m3]
+    rho_inv = np.arange(1., 8.5, 0.5)    # pqrho -> inv. air density [m3/kg]
     #ris     = np.arange(0., 1., 0.015)   # zris
     r_iv = np.arange(1e-6, 99e-6, 1e-6)  # zris -> size ice crystals [mm]
     import IPython; IPython.embed()
@@ -102,8 +102,8 @@ if __name__ == '__main__':
         for j, r in enumerate(r_iv):
             array_alpha[i,j] = alpha1(rho, r)
     x = np.zeros(np.shape(rho_air)[0]+1)
-    x[0] = rho_air[0]-0.015/2
-    x[1:] = rho_air[:]+0.015/2
+    x[0] = rho_air[0]-0.1/2
+    x[1:] = rho_air[:]+0.1/2
     y = np.zeros(np.shape(r_iv)[0]+1)
     y[0] = r_iv[0]-1e-6/2
     y[1:] = r_iv[:]+1e-6/2
