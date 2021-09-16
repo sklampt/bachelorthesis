@@ -55,11 +55,12 @@ def alpha1(rho_air, r_iv):
 # range for air density and inverse air density, ice crystal size fix
 def alpha2(rho_air, rho_inv):
     rho_ice = 500   # crhoi [kg/m^3]
-    ris = 0.8e-3    # [m]
+    ris = 6e-6      # [m]
     r_so = 1e-4     # [m]
 
-    zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
-    alpha = -(6/zc1 * np.log10(ris/r_so))
+    # zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
+    # alpha = -(6/zc1 * np.log10(ris/r_so))
+    alpha = 17.5 * rho_air * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(ris/r_so))
     return alpha
 
 # range for inverse air density and ice crystal size, air density fix
@@ -68,8 +69,9 @@ def alpha3(rho_inv, r_iv):
     rho_ice = 500   # crhoi [kg/m^3]
     r_so = 1e-4     # [m]
 
-    zc1 = 17.5 * rair * (rho_inv)**(0.33) / rho_ice
-    alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    # zc1 = 17.5 * rair * (rho_inv)**(0.33) / rho_ice
+    # alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    alpha = 17.5 * rair * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
     return alpha
 
 def plot_mesh(x, y, z):
@@ -95,7 +97,7 @@ def plot_hist(array_alpha):
 if __name__ == '__main__':
     rho_air = np.arange(0.25,1.47,0.0075) # prho -> air density [kg/m3]
     rho_inv = np.arange(1., 8.5, 0.05)    # pqrho -> inv. air density [m3/kg]
-    r_iv     = np.arange(8e-6, 1e-5, 1e-6)    # zris, diags sina
+    r_iv     = np.arange(8e-6, 1e-4, 1e-6)    # zris, diags sina
     #r_iv = np.arange(1e-6, 99e-6, 1e-6)   # zris -> size ice crystals [mm]
     #import IPython; IPython.embed()
     
