@@ -39,7 +39,7 @@ plt.rc('axes', axisbelow=True)
 cm = matplotlib.colors.ListedColormap(sns.color_palette('Blues', 6).as_hex())
 
 output_path = 'out/'
-save_attr = '_zris_new_alpha1'
+save_attr = '_zris_new_alpha3'
 
 # range for air density and ice crystal size, inv. air density calculated with rho_air
 def alpha1(rho_air, r_iv):
@@ -100,16 +100,16 @@ if __name__ == '__main__':
     #import IPython; IPython.embed()
     
     # alpha1
-    array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
-    for i, rho in enumerate(rho_air):
-        for j, r in enumerate(r_iv):
-            array_alpha[i,j] = - alpha1(rho, r)
-    x = np.zeros(np.shape(rho_air)[0]+1)
-    x[0] = rho_air[0]-0.0075/2
-    x[1:] = rho_air[:]+0.0075/2
-    y = np.zeros(np.shape(r_iv)[0]+1)
-    y[0] = r_iv[0]-1e-6/2
-    y[1:] = r_iv[:]+1e-6/2
+    #array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
+    #for i, rho in enumerate(rho_air):
+    #    for j, r in enumerate(r_iv):
+    #        array_alpha[i,j] = - alpha1(rho, r)
+    #x = np.zeros(np.shape(rho_air)[0]+1)
+    #x[0] = rho_air[0]-0.0075/2
+    #x[1:] = rho_air[:]+0.0075/2
+    #y = np.zeros(np.shape(r_iv)[0]+1)
+    #y[0] = r_iv[0]-1e-6/2
+    #y[1:] = r_iv[:]+1e-6/2
 
     # alpha2
     # array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
@@ -124,16 +124,16 @@ if __name__ == '__main__':
     # y[1:] = rho_inv[:]+0.05/2
 
     # alpha3
-    #array_alpha = np.zeros((np.shape(rho_inv)[0],np.shape(r_iv)[0]))
-    #for i, rho in enumerate(rho_inv):
-    #    for j, r in enumerate(r_iv):
-    #        array_alpha[i,j] = - alpha3(rho, r)
-    #x = np.zeros(np.shape(rho_inv)[0]+1)
-    #x[0] = rho_inv[0]-0.05/2
-    #x[1:] = rho_inv[:]+0.05/2
-    #y = np.zeros(np.shape(r_iv)[0]+1)
-    #y[0] = r_iv[0]-1e-6/2
-    #y[1:] = r_iv[:]+1e-6/2
+    array_alpha = np.zeros((np.shape(rho_inv)[0],np.shape(r_iv)[0]))
+    for i, rho in enumerate(rho_inv):
+        for j, r in enumerate(r_iv):
+            array_alpha[i,j] = - alpha3(rho, r)
+    x = np.zeros(np.shape(rho_inv)[0]+1)
+    x[0] = rho_inv[0]-0.05/2
+    x[1:] = rho_inv[:]+0.05/2
+    y = np.zeros(np.shape(r_iv)[0]+1)
+    y[0] = r_iv[0]-1e-6/2
+    y[1:] = r_iv[:]+1e-6/2
 
 
     plot_mesh(x, y, array_alpha)
