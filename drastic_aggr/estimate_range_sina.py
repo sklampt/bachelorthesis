@@ -103,7 +103,7 @@ if __name__ == '__main__':
     array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
     for i, rho in enumerate(rho_air):
         for j, r in enumerate(r_iv):
-            array_alpha[i,j] = - alpha2(rho, r)
+            array_alpha[i,j] = - alpha1(rho, r)
     x = np.zeros(np.shape(rho_air)[0]+1)
     x[0] = rho_air[0]-0.0075/2
     x[1:] = rho_air[:]+0.0075/2
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     #array_alpha = np.zeros((np.shape(rho_inv)[0],np.shape(r_iv)[0]))
     #for i, rho in enumerate(rho_inv):
     #    for j, r in enumerate(r_iv):
-    #        array_alpha[i,j] = - alpha2(rho, r)
+    #        array_alpha[i,j] = - alpha3(rho, r)
     #x = np.zeros(np.shape(rho_inv)[0]+1)
     #x[0] = rho_inv[0]-0.05/2
     #x[1:] = rho_inv[:]+0.05/2
