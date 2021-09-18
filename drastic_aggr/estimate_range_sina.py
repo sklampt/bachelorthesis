@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     # alpha2
     for k in range(len(r_iv_eff)):
-        ris = r_iv_eff[i]
+        ris = r_iv_eff[k]
         array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
         for i, rho in enumerate(rho_air):
             for j, r in enumerate(rho_inv):
