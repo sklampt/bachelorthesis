@@ -53,7 +53,7 @@ def alpha1(rho_air, r_iv):
     return alpha
 
 # range for air density and inverse air density, ice crystal size fix
-def alpha2(rho_air, rho_inv, ris):
+def alpha2(rho_air, rho_inv):
     rho_ice = 500   # crhoi [kg/m^3]
     ris = 2e-6      # [m]
     r_so = 1e-4     # [m]
@@ -97,8 +97,8 @@ def plot_hist(array_alpha):
 if __name__ == '__main__':
     rho_air  = np.arange(0.25,1.47,0.0075)      # prho -> air density [kg/m3]
     rho_inv  = np.arange(1., 8.5, 0.05)         # pqrho -> inv. air density [m3/kg]
-    r_iv     = np.arange(1e-6, 1e-4, 1e-2)   # zris, diags sina
-    r_iv_eff = np.array([2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-5, 1.85e-4])   # effective_ice_crystal_radius, diags sina
+    r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
+    r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
     #r_iv = np.arange(1e-6, 99e-6, 1e-6)   # zris -> size ice crystals [mm]
     #import IPython; IPython.embed()
     
@@ -127,9 +127,9 @@ if __name__ == '__main__':
     x = np.zeros(np.shape(rho_air)[0]+1)
     x[0] = rho_air[0]-0.0075/2
     x[1:] = rho_air[:]+0.0075/2
-    y = np.zeros(np.shape(r_iv_eff)[0]+1)
-    y[0] = r_iv_eff[0]-1e-6/2
-    y[1:] = r_iv_eff[:]+1e-6/2
+    y = np.zeros(np.shape(rho_inv)[0]+1)
+    y[0] = rho_inv[0]-1e-6/2
+    y[1:] = rho_inv[:]+1e-6/2
     # y = np.zeros(np.shape(rho_inv)[0]+1)
     # y[0] = rho_inv[0]-0.05/2
     # y[1:] = rho_inv[:]+0.05/2
