@@ -98,7 +98,7 @@ if __name__ == '__main__':
     rho_air  = np.arange(0.25,1.47,0.0075)      # prho -> air density [kg/m3]
     rho_inv  = np.arange(1., 8.5, 0.05)         # pqrho -> inv. air density [m3/kg]
     r_iv     = np.arange(1e-6, 1e-4, 1e-2)   # zris, diags sina
-    r_iv_eff = np.array(2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-5, 1.85e-4)   # effective_ice_crystal_radius, diags sina
+    r_iv_eff = np.array([2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-5, 1.85e-4])   # effective_ice_crystal_radius, diags sina
     #r_iv = np.arange(1e-6, 99e-6, 1e-6)   # zris -> size ice crystals [mm]
     #import IPython; IPython.embed()
     
