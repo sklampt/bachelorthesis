@@ -53,9 +53,9 @@ def alpha1(rho_air, r_iv):
     return alpha
 
 # range for air density and inverse air density, ice crystal size fix
-def alpha2(rho_air, rho_inv):
+def alpha2(rho_air, rho_inv, ris):
     rho_ice = 500   # crhoi [kg/m^3]
-    ris = 2e-6      # [m]
+    #ris = 2e-6      # [m]
     r_so = 1e-4     # [m]
 
     zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
@@ -98,7 +98,8 @@ if __name__ == '__main__':
     rho_air  = np.arange(0.25,1.47,0.0075)      # prho -> air density [kg/m3]
     rho_inv  = np.arange(1., 8.5, 0.05)         # pqrho -> inv. air density [m3/kg]
     r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
-    r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
+    #r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
+    r_iv_eff = [2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
     #r_iv = np.arange(1e-6, 99e-6, 1e-6)   # zris -> size ice crystals [mm]
     #import IPython; IPython.embed()
     
@@ -120,23 +121,25 @@ if __name__ == '__main__':
 
 
     # alpha2
-    array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
-    for i, rho in enumerate(rho_air):
-        for j, r in enumerate(rho_inv):
-                array_alpha[i,j] = - alpha2(rho, r)
-    x = np.zeros(np.shape(rho_air)[0]+1)
-    x[0] = rho_air[0]-0.0075/2
-    x[1:] = rho_air[:]+0.0075/2
-    y = np.zeros(np.shape(rho_inv)[0]+1)
-    y[0] = rho_inv[0]-1e-6/2
-    y[1:] = rho_inv[:]+1e-6/2
-    # y = np.zeros(np.shape(rho_inv)[0]+1)
-    # y[0] = rho_inv[0]-0.05/2
-    # y[1:] = rho_inv[:]+0.05/2
+    for k in range(len(r_iv_eff)):
+        ris = r_iv_eff[k]
+        array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
+        for i, rho in enumerate(rho_air):
+            for j, r in enumerate(rho_inv):
+                array_alpha[i,j] = - alpha2(rho, r, ris)
+        x = np.zeros(np.shape(rho_air)[0]+1)
+        x[0] = rho_air[0]-0.0075/2
+        x[1:] = rho_air[:]+0.0075/2
+        y = np.zeros(np.shape(rho_inv)[0]+1)
+        y[0] = rho_inv[0]-1e-6/2
+        y[1:] = rho_inv[:]+1e-6/2
+        # y = np.zeros(np.shape(rho_inv)[0]+1)
+        # y[0] = rho_inv[0]-0.05/2
+        # y[1:] = rho_inv[:]+0.05/2
 
-    save_attr = str('_zris_eff_icr_alpha2_2e-6')
-    plot_mesh(x, y, array_alpha)
-    plot_hist(array_alpha)
+        save_attr = str('_zris_eff_icr_alpha2_' + str(r_iv_eff[k]))
+        plot_mesh(x, y, array_alpha)
+        plot_hist(array_alpha)
 
 
     # alpha3
