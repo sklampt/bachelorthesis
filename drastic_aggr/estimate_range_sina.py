@@ -129,8 +129,8 @@ if __name__ == '__main__':
     x[0] = rho_air[0]-0.0075/2
     x[1:] = rho_air[:]+0.0075/2
     y = np.zeros(np.shape(r_iv_eff)[0]+1)
-    y[0] = r_iv[0]-1e-6/2
-    y[1:] = r_iv[:]+1e-6/2
+    y[0] = r_iv_eff[0]-1e-6/2
+    y[1:] = r_iv_eff[:]+1e-6/2
     # y = np.zeros(np.shape(rho_inv)[0]+1)
     # y[0] = rho_inv[0]-0.05/2
     # y[1:] = rho_inv[:]+0.05/2
