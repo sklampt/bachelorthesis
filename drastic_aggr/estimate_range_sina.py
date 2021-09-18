@@ -171,6 +171,6 @@ if __name__ == '__main__':
         y[0] = r_iv[0]-1e-6/2
         y[1:] = r_iv[:]+1e-6/2
 
-        save_attr = str('_zris_new_alpha3' + str(rho_air_eff[k]))
+        save_attr = str('_zris_new_alpha3_' + str(rho_air_eff[k]))
         plot_mesh3(x, y, array_alpha)
         #plot_hist(array_alpha)
