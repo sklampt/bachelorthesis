@@ -74,15 +74,27 @@ def alpha3(rho_inv, r_iv):
     #alpha = 17.5 * rair * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
     return alpha
 
-def plot_mesh(x, y, z):
+def plot_mesh1(x, y, z):
     fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(12/2.54,12/2.54/2), sharex=True, gridspec_kw={'wspace': 0.5})
     plt.subplots_adjust(0,0,1,1)
     # Adjust canvas size: https://stackoverflow.com/questions/16057869/setting-the-size-of-the-plotting-canvas-in-matplotlib
     #fig = plt.figure(figsize=(3, 1.5))
     im = plt.pcolormesh(y, x, z)
     fig.colorbar(im, label='alpha')
-    plt.xlabel(r'$r_{iv}$ (\SI{}{\micro \meter})')
-    plt.ylabel(r'$\rho_{\mathrm{air}}$ (\SI{}{\kg \per \cubic \meter})')
+    plt.xlabel(r'$r_{ice crystal}$ [$\mu$m]')
+    plt.ylabel(r'$\rho_{\mathrm{air}}$ [kg/m³]')
+    plt.savefig(output_path+'mesh'+save_attr+'.pdf', bbox_inches='tight')
+    plt.close()
+
+def plot_mesh2(x, y, z):
+    fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(12/2.54,12/2.54/2), sharex=True, gridspec_kw={'wspace': 0.5})
+    plt.subplots_adjust(0,0,1,1)
+    # Adjust canvas size: https://stackoverflow.com/questions/16057869/setting-the-size-of-the-plotting-canvas-in-matplotlib
+    #fig = plt.figure(figsize=(3, 1.5))
+    im = plt.pcolormesh(y, x, z)
+    fig.colorbar(im, label='alpha')
+    plt.xlabel(r'$\rho_{\mathrm{inv}}$ [m³/kg]')
+    plt.ylabel(r'$\rho_{\mathrm{air}}$ [kg/m³]')
     plt.savefig(output_path+'mesh'+save_attr+'.pdf', bbox_inches='tight')
     plt.close()
 
@@ -100,6 +112,7 @@ if __name__ == '__main__':
     r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
     #r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
     r_iv_eff = [2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
+    # r_iv_eff = [2e-6]
     #r_iv = np.arange(1e-6, 99e-6, 1e-6)   # zris -> size ice crystals [mm]
     #import IPython; IPython.embed()
     
@@ -107,7 +120,7 @@ if __name__ == '__main__':
     array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
     for i, rho in enumerate(rho_air):
         for j, r in enumerate(r_iv):
-            array_alpha[i,j] = - alpha1(rho, r)
+            array_alpha[i,j] = alpha1(rho, r)
     x = np.zeros(np.shape(rho_air)[0]+1)
     x[0] = rho_air[0]-0.0075/2
     x[1:] = rho_air[:]+0.0075/2
@@ -116,8 +129,8 @@ if __name__ == '__main__':
     y[1:] = r_iv[:]+1e-6/2
 
     save_attr = '_zris_eff_icr_alpha1'
-    plot_mesh(x, y, array_alpha)
-    plot_hist(array_alpha)
+    plot_mesh1(x, y, array_alpha)
+    #plot_hist(array_alpha)
 
 
     # alpha2
@@ -126,7 +139,7 @@ if __name__ == '__main__':
         array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
         for i, rho in enumerate(rho_air):
             for j, r in enumerate(rho_inv):
-                array_alpha[i,j] = - alpha2(rho, r, ris)
+                array_alpha[i,j] = alpha2(rho, r, ris)
         x = np.zeros(np.shape(rho_air)[0]+1)
         x[0] = rho_air[0]-0.0075/2
         x[1:] = rho_air[:]+0.0075/2
@@ -138,8 +151,8 @@ if __name__ == '__main__':
         # y[1:] = rho_inv[:]+0.05/2
 
         save_attr = str('_zris_eff_icr_alpha2_' + str(r_iv_eff[k]))
-        plot_mesh(x, y, array_alpha)
-        plot_hist(array_alpha)
+        plot_mesh2(x, y, array_alpha)
+        #plot_hist(array_alpha)
 
 
     # alpha3
