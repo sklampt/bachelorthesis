@@ -55,7 +55,7 @@ def alpha1(rho_air, r_iv):
 # range for air density and inverse air density, ice crystal size fix
 def alpha2(rho_air, rho_inv, ris):
     rho_ice = 500   # crhoi [kg/m^3]
-    #ris = 6e-6      # [m]
+    ris = 2e-6      # [m]
     r_so = 1e-4     # [m]
 
     zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
@@ -120,24 +120,23 @@ if __name__ == '__main__':
 
 
     # alpha2
-    for k, ris in np.denumerate(r_iv_eff):
-        array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
-        for i, rho in enumerate(rho_air):
-            for j, r in enumerate(rho_inv):
-                    array_alpha[i,j] = - alpha2(rho, r, ris)
-        x = np.zeros(np.shape(rho_air)[0]+1)
-        x[0] = rho_air[0]-0.0075/2
-        x[1:] = rho_air[:]+0.0075/2
-        y = np.zeros(np.shape(r_iv_eff)[0]+1)
-        y[0] = r_iv_eff[0]-1e-6/2
-        y[1:] = r_iv_eff[:]+1e-6/2
-        # y = np.zeros(np.shape(rho_inv)[0]+1)
-        # y[0] = rho_inv[0]-0.05/2
-        # y[1:] = rho_inv[:]+0.05/2
+    array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(rho_inv)[0]))
+    for i, rho in enumerate(rho_air):
+        for j, r in enumerate(rho_inv):
+                array_alpha[i,j] = - alpha2(rho, r)
+    x = np.zeros(np.shape(rho_air)[0]+1)
+    x[0] = rho_air[0]-0.0075/2
+    x[1:] = rho_air[:]+0.0075/2
+    y = np.zeros(np.shape(r_iv_eff)[0]+1)
+    y[0] = r_iv_eff[0]-1e-6/2
+    y[1:] = r_iv_eff[:]+1e-6/2
+    # y = np.zeros(np.shape(rho_inv)[0]+1)
+    # y[0] = rho_inv[0]-0.05/2
+    # y[1:] = rho_inv[:]+0.05/2
 
-        save_attr = str('_zris_eff_icr_alpha2_' + str(k))
-        plot_mesh(x, y, array_alpha)
-        plot_hist(array_alpha)
+    save_attr = str('_zris_eff_icr_alpha2_2e-6')
+    plot_mesh(x, y, array_alpha)
+    plot_hist(array_alpha)
 
 
     # alpha3
