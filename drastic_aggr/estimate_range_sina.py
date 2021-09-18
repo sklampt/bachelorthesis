@@ -47,9 +47,9 @@ def alpha1(rho_air, r_iv):
     rho_ice = 500   # crhoi [kg/m^3]
     r_so = 1e-4     # [m]
 
-    #zc1 = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / rho_ice
-    #alpha = -(6/zc1 * np.log10(r_iv/r_so))
-    alpha = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
+    zc1 = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / rho_ice
+    alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    #alpha = 17.5 * rho_air * (rho_sigma/rho_air)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
     return alpha
 
 # range for air density and inverse air density, ice crystal size fix
@@ -58,9 +58,9 @@ def alpha2(rho_air, rho_inv, ris):
     #ris = 6e-6      # [m]
     r_so = 1e-4     # [m]
 
-    # zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
-    # alpha = -(6/zc1 * np.log10(ris/r_so))
-    alpha = 17.5 * rho_air * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(ris/r_so))
+    zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
+    alpha = -(6/zc1 * np.log10(ris/r_so))
+    #alpha = 17.5 * rho_air * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(ris/r_so))
     return alpha
 
 # range for inverse air density and ice crystal size, air density fix
@@ -69,9 +69,9 @@ def alpha3(rho_inv, r_iv):
     rho_ice = 500   # crhoi [kg/m^3]
     r_so = 1e-4     # [m]
 
-    # zc1 = 17.5 * rair * (rho_inv)**(0.33) / rho_ice
-    # alpha = -(6/zc1 * np.log10(r_iv/r_so))
-    alpha = 17.5 * rair * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
+    zc1 = 17.5 * rair * (rho_inv)**(0.33) / rho_ice
+    alpha = -(6/zc1 * np.log10(r_iv/r_so))
+    #alpha = 17.5 * rair * (rho_inv)**(0.33) / (6 * rho_ice * np.log10(r_iv/r_so))
     return alpha
 
 def plot_mesh(x, y, z):
