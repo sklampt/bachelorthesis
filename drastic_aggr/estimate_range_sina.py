@@ -135,7 +135,7 @@ if __name__ == '__main__':
     y[0] = r_iv[0]-1e-6/2
     y[1:] = r_iv[:]+1e-6/2
 
-    save_attr = '_zris_eff_icr_alpha1'
+    save_attr = '_alpha1'
     plot_mesh1(x, y, array_alpha)
     #plot_hist(array_alpha)
 
@@ -153,7 +153,7 @@ if __name__ == '__main__':
         y[0] = rho_inv[0]-0.05/2
         y[1:] = rho_inv[:]+0.05/2
 
-        save_attr = str('_zris_eff_icr_alpha2_' + str(r_iv_eff[k]))
+        save_attr = str('_icr_alpha2_' + str(r_iv_eff[k]))
         plot_mesh2(x, y, array_alpha)
         #plot_hist(array_alpha)
 
@@ -171,6 +171,6 @@ if __name__ == '__main__':
         y[0] = r_iv[0]-1e-6/2
         y[1:] = r_iv[:]+1e-6/2
 
-        save_attr = str('_zris_new_alpha3_' + str(rho_air_eff[k]))
+        save_attr = str('_rhoair_alpha3_' + str(rho_air_eff[k]))
         plot_mesh3(x, y, array_alpha)
         #plot_hist(array_alpha)
