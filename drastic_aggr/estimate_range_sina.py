@@ -116,13 +116,14 @@ def plot_hist(array_alpha):
     plt.close()
 
 if __name__ == '__main__':
+    #drastic
     rho_air  = np.arange(0.25,1.47,0.0075)      # prho -> air density [kg/m3]
     rho_air_eff  = [0.25, 0.494, 0.738, 0.982, 1.226 ,1.47]
     rho_inv  = np.arange(1., 8.5, 0.05)         # pqrho -> inv. air density [m3/kg]
     r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
     #r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
     r_iv_eff = [2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
-    
+
     # alpha1
     array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
     for i, rho in enumerate(rho_air):
