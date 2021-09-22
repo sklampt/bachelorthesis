@@ -29,7 +29,7 @@ from scipy import stats
 from scipy.stats.stats import pearsonr
 
 import math
-from math import degrees, radians, cos, sin, acos
+#from math import degrees, radians, cos, sin, acos, sqrt
 
 import seaborn as sns
 
@@ -54,9 +54,20 @@ def alpha1(rho_air, r_iv):
 # range for air density and inverse air density, ice crystal size fix
 def alpha2(rho_air, rho_inv, ris):
     rho_ice = 500    # crhoi [kg/m^3]
-    #ris = 2e-6      # [m]
     r_so = 1e-4      # [m]
+    ceffmin = 10.0
+    ceffmax = 150.0
+    
+    # calculation ris
+    ris = min(max(ris, ceffmin), ceffmax)
 
+    #ris = 5113188. + 2809.*ris**3
+    #ris = math.sqrt(ris)
+    #ris = -2261. + ris
+    ris = math.sqrt(5113188. + 2809.*ris**3) - 2261.    
+    ris = 1e-6 * ris**(1./3.)
+    # merge not included
+        
     zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
     alpha = -(6/zc1 * np.log10(ris/r_so))
     return alpha
@@ -117,14 +128,12 @@ def plot_hist(array_alpha):
 
 if __name__ == '__main__':
     #drastic
-    rho_air  = np.arange(0.25,1.47,0.0075)      # prho -> air density [kg/m3]
-    rho_air_eff  = [0.25, 0.494, 0.738, 0.982, 1.226 ,1.47]
+    rho_air  = np.arange(0.15,1.47,0.0075)      # prho -> air density [kg/m3]
+    rho_air_eff  = [0.15, 0.414, 0.678, 0.942, 1.206 ,1.47]
     rho_inv  = np.arange(1., 8.5, 0.05)         # pqrho -> inv. air density [m3/kg]
-    #r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
+    r_iv     = np.arange(1e-6, 1e-4, 1e-6)   # zris, diags sina
     # r_iv_eff = np.arange(2e-6, 1.85e-4, 1e-6)   # effective_ice_crystal_radius, diags sina
-    #r_iv_eff = [2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
-    r_iv     = np.arange(3.86e-5, 1e-4, 1e-6)
-    r_iv_eff = [3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
+    r_iv_eff = [2e-6, 3.86e-5, 7.52e-5, 1.118e-4, 1.484e-4, 1.85e-4]
 
     # alpha1
     array_alpha = np.zeros((np.shape(rho_air)[0],np.shape(r_iv)[0]))
@@ -138,7 +147,7 @@ if __name__ == '__main__':
     y[0] = r_iv[0]-1e-6/2
     y[1:] = r_iv[:]+1e-6/2
 
-    save_attr = '_alpha1_newrange_riv'
+    save_attr = '_alpha1_'
     plot_mesh1(x, y, array_alpha)
     #plot_hist(array_alpha)
 
@@ -156,9 +165,10 @@ if __name__ == '__main__':
         y[0] = rho_inv[0]-0.05/2
         y[1:] = rho_inv[:]+0.05/2
 
-        save_attr = str('_icr_alpha2_' + str(r_iv_eff[k]))
-        #plot_mesh2(x, y, array_alpha)
-        #plot_hist(array_alpha)
+        #save_attr = str('_icr_alpha2_' + str(r_iv_eff[k]))
+        save_attr = '_icr_alpha2_'
+        plot_mesh2(x, y, array_alpha)
+        plot_hist(array_alpha)
 
     # alpha3
     for k in range(len(rho_air_eff)):
@@ -174,6 +184,6 @@ if __name__ == '__main__':
         y[0] = r_iv[0]-1e-6/2
         y[1:] = r_iv[:]+1e-6/2
 
-        save_attr = str('_rhoair_alpha3_newrange_riv_' + str(rho_air_eff[k]))
+        save_attr = str('_rhoair_alpha3_' + str(rho_air_eff[k]))
         plot_mesh3(x, y, array_alpha)
         #plot_hist(array_alpha)
