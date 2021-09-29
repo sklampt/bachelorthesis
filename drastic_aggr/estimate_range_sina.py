@@ -53,21 +53,21 @@ def alpha1(rho_air, r_iv):
 
 # range for air density and inverse air density, ice crystal size fix
 def alpha2(rho_air, rho_inv, ris):
-    rho_ice = 500    # crhoi [kg/m^3]
-    r_so = 1e-4      # [m]
-    ceffmin = 10.0
-    ceffmax = 150.0
-    
+    rho_ice = 500       # crhoi [kg/m^3]
+    r_so    = 1e-4      # [m]
+    ceffmin = 10e-6     # [m]
+    ceffmax = 150e-6    # [m]
+
     # calculation ris
     ris = min(max(ris, ceffmin), ceffmax)
 
     #ris = 5113188. + 2809.*ris**3
     #ris = math.sqrt(ris)
     #ris = -2261. + ris
-    ris = math.sqrt(5113188. + 2809.*ris**3) - 2261.    
+    ris = math.sqrt(5113188. + 2809.*ris**3) - 2261.
     ris = 1e-6 * ris**(1./3.)
     # merge not included
-        
+
     zc1 = 17.5 * rho_air * (rho_inv)**(0.33) / rho_ice
     alpha = -(6/zc1 * np.log10(ris/r_so))
     return alpha
@@ -116,7 +116,7 @@ def plot_mesh3(x, y, z):
     plt.xlabel(r'$r_{ice crystal}$ [$\mu$m]')
     plt.ylabel(r'$\rho_{\mathrm{inv}}$ [m³/kg]')
     plt.savefig(output_path+'mesh'+save_attr+'.pdf', bbox_inches='tight')
-    plt.close()    
+    plt.close()
 
 def plot_hist(array_alpha):
     print(np.median(array_alpha), np.nanmean(array_alpha))
