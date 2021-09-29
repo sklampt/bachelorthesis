@@ -8,7 +8,7 @@ from netCDF4 import Dataset
 import xarray as xr
 
 ### parameters that are plotted
-parameter = ['diag02', 'diag03']
+parameter = ['DIAG01_2', 'DIAG01_3']
 
 for i in range(len(parameter)):
 	# Opening netCDF files
@@ -19,29 +19,16 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200301.01_activ'.format(run_nr_diff)+'.nc')
-	# d2  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr2)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr2))
-	# d3  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr3)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr3))
-	# d4  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr4)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr4))
-    # d5  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_01/'.format(run_nr_diff)+'multi_annual_means_test793_01_2003-2003'.format(run_nr_diff)+'.nc')
-	# d6  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr2)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr2))
-	# d7  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr3)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr3))
-	# d8  = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr4)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr4))
-    # d9  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_01/'.format(run_nr_diff)+'multi_annual_means_test793_01_2003-2003'.format(run_nr_diff)+'.nc')
-	# d10 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr2)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr2))
-	# d11 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr3)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr3))
-	# d12 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr4)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr4))
-
-
+	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200303.01_activ'.format(run_nr_diff)+'.nc')
 
 	# Access variables, e.g.
 	var = parameter[i]
-	if var == 'diag02':
+	if var == 'DIAG01_2':
 		unit = ' [m]'
-	elif var == 'diag03':
+	elif var == 'DIAG01_3':
 		unit = ' [kg m-3]'
 
-	run_name = '1'
+	run_name = '3'
 
 	plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Frequency {}'.format(var)
@@ -49,7 +36,7 @@ for i in range(len(parameter)):
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 
-	plt.hist(d1[var][0,:,0], label='january')
+	plt.hist(d1[var][0,:,0], label='march')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	#plt.bar(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
