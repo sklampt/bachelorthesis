@@ -89,7 +89,7 @@ def plot_mesh1(x, y, z):
     #fig = plt.figure(figsize=(3, 1.5))
     im = plt.pcolormesh(y, x, z)
     fig.colorbar(im, label='alpha')
-    plt.xlabel(r'$r_{ice crystal}$ [$\mu$m]')
+    plt.xlabel(r'$r_{ice crystal}$ [m]')
     plt.ylabel(r'$\rho_{\mathrm{air}}$ [kg/m³]')
     plt.savefig(output_path+'mesh'+save_attr+'.pdf', bbox_inches='tight')
     plt.close()
@@ -113,7 +113,7 @@ def plot_mesh3(x, y, z):
     #fig = plt.figure(figsize=(3, 1.5))
     im = plt.pcolormesh(y, x, z)
     fig.colorbar(im, label='alpha')
-    plt.xlabel(r'$r_{ice crystal}$ [$\mu$m]')
+    plt.xlabel(r'$r_{ice crystal}$ [m]')
     plt.ylabel(r'$\rho_{\mathrm{inv}}$ [m³/kg]')
     plt.savefig(output_path+'mesh'+save_attr+'.pdf', bbox_inches='tight')
     plt.close()
@@ -147,7 +147,7 @@ if __name__ == '__main__':
     y[0] = r_iv[0]-1e-6/2
     y[1:] = r_iv[:]+1e-6/2
 
-    save_attr = '_alpha1_'
+    save_attr = '_alpha1'
     plot_mesh1(x, y, array_alpha)
     #plot_hist(array_alpha)
 
@@ -165,10 +165,10 @@ if __name__ == '__main__':
         y[0] = rho_inv[0]-0.05/2
         y[1:] = rho_inv[:]+0.05/2
 
-        #save_attr = str('_icr_alpha2_' + str(r_iv_eff[k]))
-        save_attr = '_icr_alpha2_'
+        save_attr = str('_icr_alpha2_' + str(r_iv_eff[k]))
+        #save_attr = '_icr_alpha2_'
         plot_mesh2(x, y, array_alpha)
-        plot_hist(array_alpha)
+        #plot_hist(array_alpha)
 
     # alpha3
     for k in range(len(rho_air_eff)):
