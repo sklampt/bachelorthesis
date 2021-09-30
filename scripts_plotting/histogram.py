@@ -21,6 +21,7 @@ for i in range(len(parameter)):
 
 	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200312.01_activ'.format(run_nr_diff)+'.nc')
 
+	var = parameter[i]
 
 	run_name = '12_init'
 
