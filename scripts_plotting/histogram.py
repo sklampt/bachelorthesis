@@ -36,7 +36,7 @@ for i in range(len(parameter)):
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 
-	plt.hist(d1[var][0,:,0], label='december')
+	plt.hist(d1[var][:,:,:], label='december')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	#plt.bar(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
