@@ -19,7 +19,7 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200303.01_activ'.format(run_nr_diff)+'.nc')
+	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200312.01_activ'.format(run_nr_diff)+'.nc')
 
 	# Access variables, e.g.
 	var = parameter[i]
@@ -28,7 +28,7 @@ for i in range(len(parameter)):
 	elif var == 'DIAG01_3':
 		unit = ' [kg m-3]'
 
-	run_name = '3'
+	run_name = '12'
 
 	plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Frequency {}'.format(var)
@@ -36,7 +36,7 @@ for i in range(len(parameter)):
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 
-	plt.hist(d1[var][0,:,0], label='march')
+	plt.hist(d1[var][0,:,0], label='december')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	#plt.bar(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
