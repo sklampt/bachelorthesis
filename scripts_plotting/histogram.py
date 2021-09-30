@@ -8,7 +8,7 @@ from netCDF4 import Dataset
 import xarray as xr
 
 ### parameters that are plotted
-parameter = ['DIAG01_2', 'DIAG01_3']
+parameter = ['DIAG01_2', 'DIAG01_3', 'DIAG01']
 
 for i in range(len(parameter)):
 	# Opening netCDF files
@@ -25,22 +25,29 @@ for i in range(len(parameter)):
 	var = parameter[i]
 	if var == 'DIAG01_2':
 		unit = ' [m]'
+		var = 'ice_crystal_radius'
 	elif var == 'DIAG01_3':
 		unit = ' [kg m-3]'
+		var = 'rho_air'
+	else:
+		var = 'alpha'
 
-	run_name = '12'
+	run_name = '12_init'
 
 	plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Frequency {}'.format(var)
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
-
-#	plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 0.1, 0.9, 0.99, 1.], label='december')
-	plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 0.1], label='december')
-	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
-	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
-	#plt.bar(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
+	#ris
+	if var == 'ice_crystal_radius':
+		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 0.1, 0.9, 0.99, 1.], label='december')
+		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 0.1], label='december')
+		plt.hist(d1[var][:,:,:].flatten(), label='december')
+	elif var == 'rho_air':
+		plt.hist(d1[var][:,:,:].flatten(), label='december')
+	else:
+		plt.hist(d1[var][:,:,:].flatten(), label='december')
 
 
 
