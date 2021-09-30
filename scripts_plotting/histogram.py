@@ -37,7 +37,7 @@ for i in range(len(parameter)):
 
 
 #	plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 0.1, 0.9, 0.99, 1.], label='december')
-	plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5], label='december')
+	plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 0.1], label='december')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	#plt.bar(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
@@ -49,6 +49,7 @@ for i in range(len(parameter)):
 	plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
 	ax.set_ylabel('frequency')          #CDNC & ICNC [1/m2] not [1/m3]!
 	ax.set_xlabel(var + unit)
+	ax.set_xscale('log')
 
 
 	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
