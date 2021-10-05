@@ -8,7 +8,9 @@ from netCDF4 import Dataset
 import xarray as xr
 
 ### parameters that are plotted
-parameter = ['DIAG01_2', 'DIAG01_3', 'DIAG01']
+#parameter = ['DIAG01_2', 'DIAG01_3', 'DIAG01']
+#parameter = ['DIAG01_2']
+parameter = ['DIAG01']
 
 for i in range(len(parameter)):
 	# Opening netCDF files
@@ -23,14 +25,14 @@ for i in range(len(parameter)):
 
 	var = parameter[i]
 
-	run_name = '01_init'
+	run_name = '01_small'
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 	if var == 'DIAG01_2':
-		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 0.1, 0.9, 0.99, 1.], label='december')
-		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 0.1], label='december')
 		plt.hist(d1[var][:,:,:].flatten(), label='january')
+		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 0.1, 0.9, 0.99, 1.], label='december')
+		#plt.hist(d1[var][:,:,:].flatten(), bins=[1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 0.1], label='january')
 		var = 'ice_crystal_radius'
 		unit = ' [m]'
 	elif var == 'DIAG01_3':
@@ -38,8 +40,11 @@ for i in range(len(parameter)):
 		var = 'rho_air'
 		unit = ' [kg m-3]'
 	else:
-		plt.hist(d1[var][:,:,:].flatten(), label='january')
+		#plt.hist(d1[var][:,:,:].flatten(), label='january')
+		#plt.hist(d1[var][:,:,:].flatten(), bins=[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240], label='december')
+		plt.hist(d1[var][:,:,:].flatten(), bins=[0, 0.1, 1, 10], label='january')
 		var = 'alpha'
+		unit = ''
 
 	plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Frequency {}'.format(var)
@@ -52,4 +57,4 @@ for i in range(len(parameter)):
 	#ax.set_xscale('log')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/init/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/small/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
