@@ -25,7 +25,7 @@ for i in range(len(parameter)):
 
 	#dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/run/run_{}/'.format(default)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(default))
 	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test_init_ws/test_init/'.format(run_nr)+'multi_annual_means_test_init_2003-2003'.format(run_nr)+'.nc')
-	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_01/'.format(run_nr_diff)+'multi_annual_means_test793_01_2003-2003'.format(run_nr_diff)+'.nc')
+	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr_diff)+'multi_annual_means_test791_taylor_year_2003-2003'.format(run_nr_diff)+'.nc')
 	#d2 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr2)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr2))
 	#d3 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr3)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr3))
 	#d4 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr4)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr4))
@@ -41,7 +41,7 @@ for i in range(len(parameter)):
 	else: 
 		unit = ' [g m-2]'
 		
-	run_name = 'lsimple_aggr'
+	run_name = 'lsimple_accr_taylor'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Zonal mean {}'.format(var)
@@ -49,7 +49,7 @@ for i in range(len(parameter)):
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 
-	plt.plot(d1['lat'],d1[var][0,:,0], label= 'lsimple_aggr', c='green')
+	plt.plot(d1['lat'],d1[var][0,:,0], label= 'lsimple_accr_taylor', c='green')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
@@ -63,4 +63,4 @@ for i in range(len(parameter)):
 	ax.set_xlabel('latitude')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_01/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test791_taylor/zonal_mean/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
