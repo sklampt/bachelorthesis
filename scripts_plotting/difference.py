@@ -21,11 +21,11 @@ for i in range(len(parameter)):
 	run_nr_diff = 2
 
 	### TODO: update number at end (if there is more than one plot)
-	plot_name = str('Diff_'+parameter[i]+'_100_new')
+	plot_name = str('Diff_'+parameter[i]+'_taylor_aggr')
 
 	### TODO: update source folder
 	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test_init_ws/test_init/'.format(run_nr)+'multi_annual_means_test_init_2003-2003'.format(run_nr)+'.nc')
-	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr_diff)+'multi_annual_means_test791_taylor_year_2003-2003'.format(run_nr_diff)+'.nc')
+	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr_diff)+'multi_annual_means_test793_taylor_year_2003-2003'.format(run_nr_diff)+'.nc')
 
 	# Access variables, e.g.
 	d1[parameter[i]]
@@ -83,4 +83,4 @@ for i in range(len(parameter)):
 	ax.yaxis.set_major_formatter(lat_formatter)
 
 	### TODO: update destination folder
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test791_taylor/difference/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/difference/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')

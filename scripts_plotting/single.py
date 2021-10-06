@@ -23,12 +23,12 @@ for i in range(len(parameter)):
 	run_nr = 1
 	
 	### TODO: update number at end (if there is more than one plot)
-	plot_name= str(parameter[i]+'_01')
+	plot_name= str(parameter[i]+'_taylor_aggr')
 	
 	plot_title = str(parameter[i]+' for eta = 1')
 	
 	### TODO: update source folder
-	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr)+'multi_annual_means_test791_taylor_year_2003-2003'.format(run_nr)+'.nc')
+	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr)+'multi_annual_means_test793_taylor_year_2003-2003'.format(run_nr)+'.nc')
 
 	# Access variables, e.g.
 	d1[parameter[i]]
@@ -96,4 +96,4 @@ for i in range(len(parameter)):
 
 	plt.title(plot_title)
 	### TODO: update destination folder
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test791_taylor/single/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/single/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
