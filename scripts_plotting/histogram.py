@@ -42,6 +42,9 @@ for i in range(len(parameter)):
 	else:
 		#plt.hist(d1[var][:,:,:].flatten(), label='january')
 		#plt.hist(d1[var][:,:,:].flatten(), bins=[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240], label='december')
+		for i in d1[var][:,:,:]:
+			if i == 0.:
+				d1[var][:,:,:] = numpy.nan
 		plt.hist(d1[var][:,:,:].flatten(), bins=[0, 0.1, 1, 10], label='january')
 		var = 'alpha'
 		unit = ''
