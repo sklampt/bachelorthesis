@@ -28,7 +28,7 @@ for i in range(len(parameter)):
 
 	var = parameter[i]
 
-	run_name = '12_all'
+	run_name = '12_0-100'
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
@@ -54,7 +54,8 @@ for i in range(len(parameter)):
 			if d2[i] == 0:
 				d2[i] = np.nan
 		#print(d2)
-		plt.hist(d2, label='december')
+		b = np.arange(0, 100, 2)
+		plt.hist(d2, bins=b, label='december')
 		var = 'alpha'
 		unit = ''
 
@@ -69,4 +70,4 @@ for i in range(len(parameter)):
 	#ax.set_xscale('log')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/range_all/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/init/alpha/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
