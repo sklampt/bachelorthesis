@@ -7,6 +7,9 @@ import numpy as np
 from netCDF4 import Dataset
 import xarray as xr
 
+import warnings
+warnings.simplefilter(action = "ignore", category = RuntimeWarning)
+
 ### parameters that are plotted
 #parameter = ['DIAG01_2', 'DIAG01_3', 'DIAG01']
 #parameter = ['DIAG01_2']
@@ -21,11 +24,11 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/monthly/'.format(run_nr_diff)+'test793_taylor_year_200301.01_activ'.format(run_nr_diff)+'.nc')
+	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/monthly/'.format(run_nr_diff)+'test793_taylor_year_200312.01_activ'.format(run_nr_diff)+'.nc')
 
 	var = parameter[i]
 
-	run_name = '01_small'
+	run_name = '12_all'
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
@@ -42,17 +45,23 @@ for i in range(len(parameter)):
 	else:
 		#plt.hist(d1[var][:,:,:].flatten(), label='january')
 		#plt.hist(d1[var][:,:,:].flatten(), bins=[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240], label='december')
-		np.where(d1[var][:,:,:] == 0., np.nan, d1[var][:,:,:])
+		#np.where(d1[var][:,:,:] == 0., np.nan, d1[var][:,:,:])
+		#d1[var][1,1,1] = np.nan
 		#d1[var][:,:,:][d1[var][:,:,:] == 0.] = np.nan
-		print(d1[var][:,:,:])
-		plt.hist(d1[var][:,:,:].flatten(), label='january')
+		#print(d1[var][:,:,:])
+		d2 = d1[var][:,:,:].ravel()
+		for i in range(len(d2)):
+			if d2[i] == 0:
+				d2[i] = np.nan
+		#print(d2)
+		plt.hist(d2, label='december')
 		var = 'alpha'
 		unit = ''
 
 	plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
-	plot_title = 'Frequency {}'.format(var)
+	#plot_title = 'Frequency {}'.format(var)
 
-	plt.title(plot_title)
+	#plt.title(plot_title)
 
 	plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
 	ax.set_ylabel('frequency')          #CDNC & ICNC [1/m2] not [1/m3]!
@@ -60,4 +69,4 @@ for i in range(len(parameter)):
 	#ax.set_xscale('log')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/range_all/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
