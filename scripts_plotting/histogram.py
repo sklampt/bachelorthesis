@@ -21,7 +21,7 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/'.format(run_nr_diff)+'test793_taylor_year_200301.01_activ'.format(run_nr_diff)+'.nc')
+	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/monthly/'.format(run_nr_diff)+'test793_taylor_year_200301.01_activ'.format(run_nr_diff)+'.nc')
 
 	var = parameter[i]
 
@@ -42,10 +42,10 @@ for i in range(len(parameter)):
 	else:
 		#plt.hist(d1[var][:,:,:].flatten(), label='january')
 		#plt.hist(d1[var][:,:,:].flatten(), bins=[0, 20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220, 240], label='december')
-		for i in d1[var][:,:,:]:
-			if i == 0.:
-				d1[var][:,:,:] = numpy.nan 
-		plt.hist(d1[var][:,:,:].flatten(), bins=[0, 0.1, 1, 10], label='january')
+		np.where(d1[var][:,:,:] == 0., np.nan, d1[var][:,:,:])
+		#d1[var][:,:,:][d1[var][:,:,:] == 0.] = np.nan
+		print(d1[var][:,:,:])
+		plt.hist(d1[var][:,:,:].flatten(), label='january')
 		var = 'alpha'
 		unit = ''
 
@@ -60,4 +60,4 @@ for i in range(len(parameter)):
 	#ax.set_xscale('log')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/small/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/alpha/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
