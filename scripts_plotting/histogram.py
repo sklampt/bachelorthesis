@@ -24,11 +24,11 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/monthly/'.format(run_nr_diff)+'test793_taylor_year_200312.01_activ'.format(run_nr_diff)+'.nc')
+	d1  = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/monthly/'.format(run_nr_diff)+'test793_taylor_year_200301.01_activ'.format(run_nr_diff)+'.nc')
 
 	var = parameter[i]
 
-	run_name = '12_0-100'
+	run_name = '01_40-70'
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
@@ -54,8 +54,8 @@ for i in range(len(parameter)):
 			if d2[i] == 0:
 				d2[i] = np.nan
 		#print(d2)
-		b = np.arange(0, 100, 2)
-		plt.hist(d2, bins=b, label='december')
+		b = np.arange(40, 70, 0.5)
+		plt.hist(d2, bins=b, label='january')
 		var = 'alpha'
 		unit = ''
 
