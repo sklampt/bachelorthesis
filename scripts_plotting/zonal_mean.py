@@ -23,12 +23,14 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-	#dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/run/run_{}/'.format(default)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(default))
-	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test_init_ws/test_init/'.format(run_nr)+'multi_annual_means_test_init_2003-2003'.format(run_nr)+'.nc')
-	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr_diff)+'multi_annual_means_test793_taylor_year_2003-2003'.format(run_nr_diff)+'.nc')
+	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/year2003/'.format(run_nr)+'multi_annual_means_init_diags_2003-2003'.format(run_nr)+'.nc')
+	#d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr_diff)+'multi_annual_means_test793_taylor_year_2003-2003'.format(run_nr_diff)+'.nc')
 	#d2 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr2)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr2))
 	#d3 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr3)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr3))
 	#d4 = Dataset('/net/n2o/wolke_scratch/mabeling/echam/run/run_{}/'.format(run_nr4)+'multi_annual_means_run_{}_2003-2003_zmean.nc'.format(run_nr4))
+	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_50/'.format(run_nr)+'multi_annual_means_test793_50_2003-2003'.format(run_nr)+'.nc')
+	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr)+'multi_annual_means_test793_taylor_year_2003-2003'.format(run_nr)+'.nc')
+	d3 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr)+'multi_annual_means_test791_taylor_year_2003-2003'.format(run_nr)+'.nc')
 
 
 
@@ -41,7 +43,7 @@ for i in range(len(parameter)):
 	else: 
 		unit = ' [g m-2]'
 		
-	run_name = 'lsimple_aggr_taylor'
+	run_name = 'comparison_all'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Zonal mean {}'.format(var)
@@ -49,11 +51,13 @@ for i in range(len(parameter)):
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
 
-	plt.plot(d1['lat'],d1[var][0,:,0], label= 'lsimple_aggr_taylor', c='green')
+	#plt.plot(d1['lat'],d1[var][0,:,0], label= 'lsimple_aggr_taylor', c='green')
 	#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
 	#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
-
+	plt.plot(d1['lat'],d1[var][0,:,0], label= 'drastic, alpha = 50', c='aquamarine')
+	plt.plot(d2['lat'],d2[var][0,:,0], label= 'taylor, aggregation', c='salmon')
+	plt.plot(d3['lat'],d3[var][0,:,0], label= 'drastic, accretion', c='orchid')
 
 
 	plt.title(plot_title)
@@ -63,4 +67,4 @@ for i in range(len(parameter)):
 	ax.set_xlabel('latitude')
 
 
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/test793_taylor/zonal_mean/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
