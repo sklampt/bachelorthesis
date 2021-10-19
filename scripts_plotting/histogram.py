@@ -29,7 +29,7 @@ for k in range(len(parameter)):
 	#var = parameter[k]
 
 	run_name = ['12_all', '12_0-300', '12_0-100', '12_40-70']
-	
+
 	for i in range(len(run_name)):
 		var = parameter[k]
 		fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -55,7 +55,13 @@ for k in range(len(parameter)):
 			for j in range(len(d2)):
 				if d2[j] == 0:
 					d2[j] = np.nan
-			#print(d2)
+
+			d2 = d2[~np.isnan(d2)]
+
+			print("run name:", run_name[i])
+			print("mean:", np.mean(d2))
+			print("median:", np.median(d2))
+
 			if run_name[i] == '12_all':
 				plt.hist(d2, label='december')
 			elif run_name[i] == '12_0-300':
