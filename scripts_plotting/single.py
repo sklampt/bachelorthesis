@@ -18,82 +18,87 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 ### parameters that are plotted
 parameter = ['SW', 'LW', 'LWP', 'IWP', 'CC', 'CDNC']
 
-for i in range(len(parameter)):
-	# Opening netCDF files
-	run_nr = 1
-	
-	### TODO: update number at end (if there is more than one plot)
-	plot_name= str(parameter[i]+'_50')
-	
-	plot_title = str(parameter[i]+' for eta = 1')
-	
-	### TODO: update source folder
-	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_ws/test793_50/'.format(run_nr)+'multi_annual_means_test793_50_2003-2003'.format(run_nr)+'.nc')
+experiments = ['test791_taylor_double_ws/test791_taylor_double', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176']
 
-	# Access variables, e.g.
-	d1[parameter[i]]
+file_name = ['test791_doublesimplification', 'test793_156', 'test793_176']
 
-	#import IPython; IPython.embed()
+for j in range(len(experiments)):
+	for i in range(len(parameter)):
+		# Opening netCDF files
+		run_nr = 1
+		
+		### TODO: update number at end (if there is more than one plot)
+		plot_name= str(parameter[i]+'_'+file_name[j])
+		
+		plot_title = str(parameter[i]+' for eta = 1')
+		
+		### TODO: update source folder
+		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/'.format(run_nr)+'multi_annual_means_' + file_name[j] + '_2003-2003'.format(run_nr)+'.nc')
 
-	# Plotting on a map
-	lats = d1['lat'][:]
-	lons = d1['lon'][:]
+		# Access variables, e.g.
+		d1[parameter[i]]
 
-	#Color:
-	#cm = matplotlib.colors.ListedColormap((sns.color_palette("vlag")).as_hex()) #blue to red
-	#cm = matplotlib.colors.ListedColormap((sns.color_palette("ch:rot=-.0,s=.8")).as_hex())
+		#import IPython; IPython.embed()
 
-	cm = matplotlib.colors.ListedColormap((sns.color_palette("Reds", n_colors= 8)).as_hex())
+		# Plotting on a map
+		lats = d1['lat'][:]
+		lons = d1['lon'][:]
 
+		#Color:
+		#cm = matplotlib.colors.ListedColormap((sns.color_palette("vlag")).as_hex()) #blue to red
+		#cm = matplotlib.colors.ListedColormap((sns.color_palette("ch:rot=-.0,s=.8")).as_hex())
 
-	fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5.5,4))
-
-	ax = plt.axes(projection=ccrs.PlateCarree())
-
-	ax.coastlines()
-
-	gl = ax.gridlines(draw_labels=True, linewidth=0.25, color='gray', alpha=0.5)
-	gl.xlabels_top = False
-	gl.ylabels_right = False
-	gl.xlabels_bottom = False
-	gl.ylabels_left = False
-
-	# Mask so that nans appear white
-	#m = np.ma.masked_where(np.isnan(hist2dplot),hist2dplot)
-	# x and y are bounds, so z should be the value *inside* those bounds.
-	# Therefore, remove the last value from the z array.
-	datavar = d1[parameter[i]][0,:,:] 
-
-	var = parameter[i]
-	if var == 'CC':
-		unit = ' [%]'
-	elif var == 'CDNC':
-		unit = ' [m-2]'
-	elif var == 'SW' or 'LW':
-		unit = ' [W m-2]'
-	else: 
-		unit = ' [g m-2]'
-
-	#im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm)
-
-	v_min, v_max = 0, 400
-	im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm, vmin=v_min, vmax=v_max)
-	cbar = fig.colorbar(im, orientation='horizontal', label= str(parameter[i]+unit))
+		cm = matplotlib.colors.ListedColormap((sns.color_palette("Reds", n_colors= 8)).as_hex())
 
 
+		fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(5.5,4))
 
-	#ax.add_feature(cfeature.NaturalEarthFeature('physical', 'land', '50m', edgecolor='gray', facecolor='none'))
-	#states_borders_50m = cfeature.NaturalEarthFeature('cultural', 'admin_0_boundary_lines_land', '50m',
-	#                                    edgecolor='k', facecolor='none')
-	#ax.add_feature(states_borders_50m)
+		ax = plt.axes(projection=ccrs.PlateCarree())
 
-	ax.set_xticks([-180,-120,-60,0,60,120,180], crs=ccrs.PlateCarree())
-	ax.set_yticks([-60,-30,0,30,60], crs=ccrs.PlateCarree())
-	lon_formatter = LongitudeFormatter()
-	lat_formatter = LatitudeFormatter()
-	ax.xaxis.set_major_formatter(lon_formatter)
-	ax.yaxis.set_major_formatter(lat_formatter)
+		ax.coastlines()
 
-	plt.title(plot_title)
-	### TODO: update destination folder
-	plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/drastic/test793_50/single/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+		gl = ax.gridlines(draw_labels=True, linewidth=0.25, color='gray', alpha=0.5)
+		gl.xlabels_top = False
+		gl.ylabels_right = False
+		gl.xlabels_bottom = False
+		gl.ylabels_left = False
+
+		# Mask so that nans appear white
+		#m = np.ma.masked_where(np.isnan(hist2dplot),hist2dplot)
+		# x and y are bounds, so z should be the value *inside* those bounds.
+		# Therefore, remove the last value from the z array.
+		datavar = d1[parameter[i]][0,:,:] 
+
+		var = parameter[i]
+		if var == 'CC':
+			unit = ' [%]'
+		elif var == 'CDNC':
+			unit = ' [m-2]'
+		elif var == 'SW' or 'LW':
+			unit = ' [W m-2]'
+		else: 
+			unit = ' [g m-2]'
+
+		#im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm)
+
+		v_min, v_max = 0, 400
+		im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm, vmin=v_min, vmax=v_max)
+		cbar = fig.colorbar(im, orientation='horizontal', label= str(parameter[i]+unit))
+
+
+
+		#ax.add_feature(cfeature.NaturalEarthFeature('physical', 'land', '50m', edgecolor='gray', facecolor='none'))
+		#states_borders_50m = cfeature.NaturalEarthFeature('cultural', 'admin_0_boundary_lines_land', '50m',
+		#                                    edgecolor='k', facecolor='none')
+		#ax.add_feature(states_borders_50m)
+
+		ax.set_xticks([-180,-120,-60,0,60,120,180], crs=ccrs.PlateCarree())
+		ax.set_yticks([-60,-30,0,30,60], crs=ccrs.PlateCarree())
+		lon_formatter = LongitudeFormatter()
+		lat_formatter = LatitudeFormatter()
+		ax.xaxis.set_major_formatter(lon_formatter)
+		ax.yaxis.set_major_formatter(lat_formatter)
+
+		plt.title(plot_title)
+		### TODO: update destination folder
+		plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/'.format(run_nr)+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
