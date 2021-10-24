@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 r_iv = np.arange(8e-6, 1e-4, 1e-6)
-plt.plot(r_iv, np.log10(r_iv*1e4))
+plt.plot(r_iv, np.log10(r_iv*1e4), label= 'log')
 
 def alpha1(r):
     r_so = 1e-4 #m
@@ -15,5 +15,7 @@ result = np.zeros(len(r_iv))
 for i in range(len(r_iv)):
     result[i] = alpha1(r_iv[i]*1e4)
 
-plt.plot(r_iv, result)
+plt.plot(r_iv, result, label= 'taylor')
+
+plt.legend(bbox_to_anchor=(1,1), loc="upper left")
 plt.show()
