@@ -15,9 +15,9 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 ### parameters that are plotted
 parameter = ['LWP', 'IWP', 'CC', 'CDNC']
 
-experiments = ['test791_taylor_double_ws/test791_taylor_double', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176']
+experiments = ['test791_taylor_ws/test791_taylor/annual', 'test791_taylor_double_ws/test791_taylor_double', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176', 'test793_taylor_ws/test793_taylor/annual']
 
-file_name = ['test791_doublesimplification', 'test793_156', 'test793_176']
+file_name = ['test791_taylor', 'test791_doublesimplification', 'test793_156', 'test793_176', 'test793_taylor']
 
 for j in range(len(experiments)):
 	for i in range(len(parameter)):
@@ -67,10 +67,20 @@ for j in range(len(experiments)):
 		datavar = d1[parameter[i]][0,:,:]
 		datavar_2 = d2[parameter[i]][0,:,:]
 		datavar_diff = datavar_2 - datavar
+		
+		if parameter[i] == 'LWP':
+			bar_range = np.arange(-100, 120, 10)
+		elif parameter[i] == 'IWP':
+			bar_range = np.arange(-20, 30, 5)
+		elif parameter[i] == 'CC':
+			bar_range = np.arange(-25, 20, 5)
+		elif parameter[i] == 'CDNC':
+			bar_range = np.arange(-15, 18, 3)
 
 		levels = np.linspace(0,50,5)
 		norm = matplotlib.colors.BoundaryNorm(levels, ncolors=cm.N, clip=True)
-		im = ax.contourf(lons, lats, datavar_diff[:, :], cmap=cm, transform=ccrs.PlateCarree())#,  zorder=2)
+		#im = ax.contourf(lons, lats, datavar_diff[:, :], cmap=cm, transform=ccrs.PlateCarree())#,  zorder=2)
+		im = ax.contourf(lons, lats, datavar_diff[:, :], levels=bar_range, cmap=cm, transform=ccrs.PlateCarree())
 		cbar = fig.colorbar(im, orientation='horizontal')
 		cbarlabel = str(parameter[i] + ' (k)')
 		cbar.set_label(cbarlabel)
