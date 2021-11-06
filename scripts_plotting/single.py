@@ -16,24 +16,27 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 
 
 ### parameters that are plotted
-parameter = ['SW', 'LW', 'LWP', 'IWP', 'CC', 'CDNC']
+#parameter = ['SW', 'LW', 'LWP', 'IWP', 'CC', 'CDNC']
+parameter = ['LWP', 'IWP']
 
-experiments = ['test791_taylor_double_ws/test791_taylor_double', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176']
+experiments =  ['init_diags_ws/years2003-2007', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176', 'test793_taylor_ws/test793_taylor/annual', 'test791_taylor_ws/test791_taylor/annual', 'test791_taylor_double_ws/test791_taylor_double']
 
-file_name = ['test791_doublesimplification', 'test793_156', 'test793_176']
+file_name = ['init_diags_2003-2007', 'test793_156_2003-2003', 'test793_176_2003-2003', 'test793_taylor_2003-2003', 'test791_taylor_2003-2003', 'test791_doublesimplification_2003-2003']
+			 
+file_output = ['init_diags', 'test793_156', 'test793_176', 'test793_taylor', 'test791_taylor', 'test791_doublesimplification']
 
-for j in range(len(experiments)):
-	for i in range(len(parameter)):
+for j in range(0,len(experiments)):
+	for i in range(0,len(parameter)):
 		# Opening netCDF files
 		run_nr = 1
 		
 		### TODO: update number at end (if there is more than one plot)
-		plot_name= str(parameter[i]+'_'+file_name[j])
+		plot_name = str(parameter[i]+'_'+file_output[j])
 		
-		plot_title = str(parameter[i]+' for eta = 1')
+		plot_title = str(parameter[i])
 		
 		### TODO: update source folder
-		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/'.format(run_nr)+'multi_annual_means_' + file_name[j] + '_2003-2003'.format(run_nr)+'.nc')
+		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/'.format(run_nr)+'multi_annual_means_' + file_name[j].format(run_nr)+'.nc')
 
 		# Access variables, e.g.
 		d1[parameter[i]]
@@ -74,14 +77,21 @@ for j in range(len(experiments)):
 			unit = ' [%]'
 		elif var == 'CDNC':
 			unit = ' [m-2]'
+		elif var == 'IWP' or 'LWP': 
+			unit = ' [g m-2]'
 		elif var == 'SW' or 'LW':
 			unit = ' [W m-2]'
-		else: 
-			unit = ' [g m-2]'
+		
 
 		#im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm)
-
-		v_min, v_max = 0, 400
+		
+		# collapse 3D array into 1D array
+		d2 = d1[var][:,:,:].ravel()
+		for r in range(len(d2)):
+		    if d2[r] == 0:
+		        d2[r] = np.nan
+		        
+		v_min, v_max = min(d2), max(d2)
 		im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm, vmin=v_min, vmax=v_max)
 		cbar = fig.colorbar(im, orientation='horizontal', label= str(parameter[i]+unit))
 
