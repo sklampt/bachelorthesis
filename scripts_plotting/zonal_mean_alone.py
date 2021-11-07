@@ -51,7 +51,7 @@ for j in range(len(experiments)):
 		else: 
 			unit = ' [g m-2]'
 			
-		plot_name= 'Zmean_{}_{}'.format(var, file_name[j]) # adjust name
+		plot_name= 'Zmean_{}_{}_nolegend'.format(var, file_name[j]) # adjust name
 		plot_title = 'Zonal mean {}'.format(var)
 
 		fig, ax = plt.subplots(nrows=1, ncols=1)
@@ -66,7 +66,7 @@ for j in range(len(experiments)):
 
 		plt.title(plot_title)
 
-		plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
+		#plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
 		ax.set_ylabel(var + unit)          #CDNC & ICNC [1/m2] not [1/m3]!
 		ax.set_xlabel('latitude')
 
