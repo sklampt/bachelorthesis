@@ -2,43 +2,43 @@ Timer report - summary:
 tasknum * threadnum =    240
 
 default:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   6080.7              6080.7              6080.7              1459372.        100.00
-aggregation             0.4152              0.9513              1.3574              228.32          70.08
-accretion               0.2561              0.5761              0.8572              138.27          67.21
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   6080.7              6080.7              6080.7              1459372.        100.00          1
+aggregation             0.4152              0.9513              1.3574              228.32          70.08           1.56e-4
+accretion               0.2561              0.5761              0.8572              138.27          67.21           9.47e-5
 
 aggr_156:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   12661.              12661.              12661.              3038541.        100.00
-aggregation             1.9369              5.0017              7.1298              1200.4          70.15
-accretion               1.3879              3.6048              5.3394              865.15          67.51
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   12661.              12661.              12661.              3038541.        100.00          1
+aggregation             1.9369              5.0017              7.1298              1200.4          70.15           3.95e-4
+accretion               1.3879              3.6048              5.3394              865.15          67.51           2.85e-4
 
 aggr_176:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   12820.              12820.              12820.              3076906.        100.00
-aggregation             2.1723              5.0174              6.8798              1204.2          72.93
-accretion               1.5435              3.6017              4.9851              864.41          72.25
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   12820.              12820.              12820.              3076906.        100.00          1
+aggregation             2.1723              5.0174              6.8798              1204.2          72.93           3.91e-4
+accretion               1.5435              3.6017              4.9851              864.41          72.25           2.81e-4
 
 aggr_taylor:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   30972.              30972.              30972.              7433173.        100.00
-aggregation             2.2726              5.0108              8.7227              1202.6          57.45
-accretion               1.3908              3.0373              4.5517              728.95          66.73
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   30972.              30972.              30972.              7433173.        100.00          1
+aggregation             2.2726              5.0108              8.7227              1202.6          57.45           1.62e-4
+accretion               1.3908              3.0373              4.5517              728.95          66.73           9.81e-5
 
 accr_taylor_zcolleffi:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   23157.              23157.              23157.              5557733.        100.00
-aggregation             1.9125              4.3090              6.2102              1034.2          69.39
-accretion               1.1239              2.7528              4.0148              660.67          68.57
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   23157.              23157.              23157.              5557733.        100.00          1
+aggregation             1.9125              4.3090              6.2102              1034.2          69.39           1.86e-4
+accretion               1.1239              2.7528              4.0148              660.67          68.57           1.19e-4
 
 accr_doubletaylor:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   30614.              30614.              30614.              347275.         100.00
-aggregation             1.8256              4.3376              6.2884              1041.0          68.98
-accretion               1.0584              2.6421              3.8809              634.10          68.08
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   30614.              30614.              30614.              7347275.        100.00          1
+aggregation             1.8256              4.3376              6.2884              1041.0          68.98           1.42e-4
+accretion               1.0584              2.6421              3.8809              634.10          68.08           8.63e-5
 
-accr_taylor_accr:
-label                   t_min               t_avg               t_max               t_sum           lbe[%]
-total                   6080.7              6080.7              6080.7              1459372.        100.00
-aggregation             0.4152              0.9513              1.3574              228.32
-accretion               0.2561              0.5761              0.8572              138.27
+accr_taylor_onlyaccr:
+label                   t_min               t_avg               t_max               t_sum           lbe[%]          ratio t_sum
+total                   32970.              32970.              32970.              7912799.        100.00          1
+aggregation             2.2641              4.7365              6.6471              1136.8          71.26           1.44e-4
+accretion               1.0236              2.6319              3.7442              631.66          70.29           7.98e-5
