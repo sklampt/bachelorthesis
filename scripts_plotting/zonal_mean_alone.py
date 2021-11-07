@@ -14,9 +14,9 @@ import xarray as xr
 ### parameters that are plotted
 parameter = ['LWP', 'IWP', 'CC', 'CDNC']
 
-experiments = ['test791_taylor_double_ws/test791_taylor_double', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176']
+experiments = ['test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual']
 
-file_name = ['test791_doublesimplification', 'test793_156', 'test793_176']
+file_name = ['test791_onlyaccr_taylor']
 
 for j in range(len(experiments)):
 	for i in range(len(parameter)):
@@ -28,7 +28,7 @@ for j in range(len(experiments)):
 		run_nr = 1
 		run_nr_diff = 2
 
-		dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/year2003/'.format(run_nr)+'multi_annual_means_init_diags_2003-2003'.format(run_nr)+'.nc')
+		dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'multi_annual_means_init_diags_2003-2007'.format(run_nr)+'.nc')
 		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/'.format(run_nr)+'multi_annual_means_' + file_name[j] + '_2003-2003'.format(run_nr)+'.nc')
 		
 

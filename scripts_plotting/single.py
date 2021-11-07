@@ -17,13 +17,16 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 
 ### parameters that are plotted
 #parameter = ['SW', 'LW', 'LWP', 'IWP', 'CC', 'CDNC']
-parameter = ['LWP', 'IWP']
+parameter = ['SW', 'LW']
 
-experiments =  ['init_diags_ws/years2003-2007', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176', 'test793_taylor_ws/test793_taylor/annual', 'test791_taylor_ws/test791_taylor/annual', 'test791_taylor_double_ws/test791_taylor_double']
+#experiments =  ['init_diags_ws/years2003-2007', 'test793_drastic_ws/test793_156', 'test793_drastic_ws/test793_176', 'test793_taylor_ws/test793_taylor/annual', 'test791_taylor_ws/test791_taylor/annual', 'test791_taylor_double_ws/test791_taylor_double']
+experiments = ['test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual']
 
-file_name = ['init_diags_2003-2007', 'test793_156_2003-2003', 'test793_176_2003-2003', 'test793_taylor_2003-2003', 'test791_taylor_2003-2003', 'test791_doublesimplification_2003-2003']
+#file_name = ['init_diags_2003-2007', 'test793_156_2003-2003', 'test793_176_2003-2003', 'test793_taylor_2003-2003', 'test791_taylor_2003-2003', 'test791_doublesimplification_2003-2003']
+file_name = ['test791_onlyaccr_taylor_2003-2003']
 			 
-file_output = ['init_diags', 'test793_156', 'test793_176', 'test793_taylor', 'test791_taylor', 'test791_doublesimplification']
+#file_output = ['init_diags', 'test793_156', 'test793_176', 'test793_taylor', 'test791_taylor', 'test791_doublesimplification']
+file_output = ['test791_taylor_onlyaccr']
 
 for j in range(0,len(experiments)):
 	for i in range(0,len(parameter)):
@@ -77,10 +80,11 @@ for j in range(0,len(experiments)):
 			unit = ' [%]'
 		elif var == 'CDNC':
 			unit = ' [m-2]'
-		elif var == 'IWP' or 'LWP': 
-			unit = ' [g m-2]'
 		elif var == 'SW' or 'LW':
 			unit = ' [W m-2]'
+		elif var == 'IWP' or 'LWP': 
+			unit = ' [g m-2]'
+		
 		
 
 		#im = ax.pcolormesh(lons, lats, datavar[:, :], cmap=cm)
