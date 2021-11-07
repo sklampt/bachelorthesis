@@ -14,9 +14,19 @@ import xarray as xr
 ### parameters that are plotted
 parameter = ['LWP', 'IWP', 'CC', 'CDNC']
 
-experiments = ['test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual']
+experiments = ['test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual', 
+			   'test791_taylor_ws/test791_taylor/annual', 
+			   'test791_taylor_double_ws/test791_taylor_double', 
+			   'test793_drastic_ws/test793_156', 
+			   'test793_drastic_ws/test793_176', 
+			   'test793_taylor_ws/test793_taylor/annual']
 
-file_name = ['test791_onlyaccr_taylor']
+file_name = ['test791_onlyaccr_taylor', 
+			 'test791_taylor', 
+			 'test791_doublesimplification', 
+			 'test793_156', 
+			 'test793_176', 
+			 'test793_taylor']
 
 for j in range(len(experiments)):
 	for i in range(len(parameter)):
