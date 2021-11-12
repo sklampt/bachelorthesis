@@ -23,11 +23,11 @@ for i in range(len(parameter)):
 	run_nr = 1
 	run_nr_diff = 2
 
-        # ensemble - mean
-        dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ens2003-2007'.format(run_nr)+'.nc')
-        # ensemble - stddev
-        ds = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ensstd2003-2007'.format(run_nr)+'.nc')
-        # aggr
+	# ensemble - mean
+	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ens2003-2007'.format(run_nr)+'.nc')
+	# ensemble - stddev
+	ds = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ensstd2003-2007'.format(run_nr)+'.nc')
+	# aggr
 	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_drastic_ws/test793_156/'.format(run_nr)+'multi_annual_means_test793_156_2003-2003'.format(run_nr)+'.nc') # drastic 156
 	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_drastic_ws/test793_176/'.format(run_nr)+'multi_annual_means_test793_176_2003-2003'.format(run_nr)+'.nc') # drastic 176
 	d3 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr)+'multi_annual_means_test793_taylor_2003-2003'.format(run_nr)+'.nc') # taylor
@@ -57,8 +57,8 @@ for i in range(len(parameter)):
 	
 	# comparison all
 	plt.plot(dc[var][0,:,0], label= 'default', c='black')
-        # TODO: change file and variable names...
-        plt.fill_between(dc[var][0,:,0], dc[var][0,:,0] - ds[var][0,:,0], dc[var][0,:,0] + ds[var][0,:,0])
+	# TODO: change file and variable names...
+	plt.fill_between(dc[var][0,:,0], dc[var][0,:,0] - ds[var][0,:,0], dc[var][0,:,0] + ds[var][0,:,0])
 	plt.plot(d1['lat'],d1[var][0,:,0], label= 'aggregation, drastic alpha=156', c='red')
 	plt.plot(d2['lat'],d2[var][0,:,0], label= 'aggregation, drastic alpha=176', c='orange')
 	plt.plot(d3['lat'],d3[var][0,:,0], label= 'aggregation, taylor', c='yellow')
