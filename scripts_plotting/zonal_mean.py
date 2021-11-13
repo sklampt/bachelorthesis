@@ -46,8 +46,8 @@ for i in range(len(parameter)):
 		unit = ' [g m-2]'
 		
 	#run_name = 'comparison_all'
-	run_name = 'comparison_aggregation'
-	#run_name = 'comparison_accretion'
+	#run_name = 'comparison_aggregation'
+	run_name = 'comparison_accretion'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Zonal mean {}'.format(var)
@@ -64,7 +64,7 @@ for i in range(len(parameter)):
 	plt.plot(d4['lat'],d4[var][0,:,0], label= 'accretion, taylor - zcolleffi', c='yellowgreen')
 	plt.plot(d5['lat'],d5[var][0,:,0], label= 'accretion, taylor - only accr', c='aqua')
 	plt.plot(d6['lat'],d6[var][0,:,0], label= 'accretion, double taylor', c='orchid')
-	'''
+	
 	# comparison aggregation
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
 	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
@@ -79,7 +79,7 @@ for i in range(len(parameter)):
 	plt.plot(d4['lat'],d4[var][0,:,0], label= 'accretion, taylor - zcolleffi', c='yellowgreen')
 	plt.plot(d5['lat'],d5[var][0,:,0], label= 'accretion, taylor - only accr', c='aqua')
 	plt.plot(d6['lat'],d6[var][0,:,0], label= 'accretion, double taylor', c='orchid')
-	'''
+	
 
 	plt.title(plot_title)
 
