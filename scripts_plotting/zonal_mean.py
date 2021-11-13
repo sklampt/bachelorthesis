@@ -24,7 +24,7 @@ for i in range(len(parameter)):
 	run_nr_diff = 2
 
 	# ensemble - mean
-	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ens2003-2007'.format(run_nr)+'.nc')
+	dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'multi_annual_means_init_diags_2003-2007'.format(run_nr)+'.nc')
 	# ensemble - stddev
 	ds = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'ensstd2003-2007'.format(run_nr)+'.nc')
 	# aggr
