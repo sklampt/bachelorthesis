@@ -58,7 +58,7 @@ for i in range(len(parameter)):
 	# comparison all
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
 	# TODO: change file and variable names...
-	plt.fill_between(dc[var][0,:,0], dc[var][0,:,0] - ds[var][0,:,0], dc[var][0,:,0] + ds[var][0,:,0])
+	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 	plt.plot(d1['lat'],d1[var][0,:,0], label= 'aggregation, drastic alpha=156', c='red')
 	plt.plot(d2['lat'],d2[var][0,:,0], label= 'aggregation, drastic alpha=176', c='orange')
 	plt.plot(d3['lat'],d3[var][0,:,0], label= 'aggregation, taylor', c='yellow')
