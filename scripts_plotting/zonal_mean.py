@@ -45,16 +45,16 @@ for i in range(len(parameter)):
 	else: 
 		unit = ' [g m-2]'
 		
-	#run_name = 'comparison_all'
+	run_name = 'comparison_all_nolegend'
 	#run_name = 'comparison_aggregation'
-	run_name = 'comparison_accretion'
+	#run_name = 'comparison_accretion'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Zonal mean {}'.format(var)
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
-	'''
+	
 	# comparison all
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
 	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
@@ -64,7 +64,7 @@ for i in range(len(parameter)):
 	plt.plot(d4['lat'],d4[var][0,:,0], label= 'accretion, taylor - zcolleffi', c='yellowgreen')
 	plt.plot(d5['lat'],d5[var][0,:,0], label= 'accretion, taylor - only accr', c='aqua')
 	plt.plot(d6['lat'],d6[var][0,:,0], label= 'accretion, double taylor', c='orchid')
-	
+	'''
 	# comparison aggregation
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
 	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
@@ -72,18 +72,18 @@ for i in range(len(parameter)):
 	plt.plot(d2['lat'],d2[var][0,:,0], label= 'aggregation, drastic alpha=176', c='orange')
 	plt.plot(d3['lat'],d3[var][0,:,0], label= 'aggregation, taylor', c='yellow')
 	
-	'''
+	
 	# comparison accretion
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
 	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 	plt.plot(d4['lat'],d4[var][0,:,0], label= 'accretion, taylor - zcolleffi', c='yellowgreen')
 	plt.plot(d5['lat'],d5[var][0,:,0], label= 'accretion, taylor - only accr', c='aqua')
 	plt.plot(d6['lat'],d6[var][0,:,0], label= 'accretion, double taylor', c='orchid')
-	
+	'''
 
 	plt.title(plot_title)
 
-	plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
+	#plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
 	ax.set_ylabel(var + unit)          #CDNC & ICNC [1/m2] not [1/m3]!
 	ax.set_xlabel('latitude')
 
