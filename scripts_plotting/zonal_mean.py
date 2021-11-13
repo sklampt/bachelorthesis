@@ -45,8 +45,8 @@ for i in range(len(parameter)):
 	else: 
 		unit = ' [g m-2]'
 		
-	run_name = 'comparison_all'
-	#run_name = 'comparison_aggregation'
+	#run_name = 'comparison_all'
+	run_name = 'comparison_aggregation'
 	#run_name = 'comparison_accretion'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
@@ -54,10 +54,9 @@ for i in range(len(parameter)):
 
 	fig, ax = plt.subplots(nrows=1, ncols=1)
 
-	
+	'''
 	# comparison all
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
-	# TODO: change file and variable names...
 	plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 	plt.plot(d1['lat'],d1[var][0,:,0], label= 'aggregation, drastic alpha=156', c='red')
 	plt.plot(d2['lat'],d2[var][0,:,0], label= 'aggregation, drastic alpha=176', c='orange')
@@ -68,13 +67,15 @@ for i in range(len(parameter)):
 	'''
 	# comparison aggregation
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
+        plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 	plt.plot(d1['lat'],d1[var][0,:,0], label= 'aggregation, drastic alpha=156', c='red')
 	plt.plot(d2['lat'],d2[var][0,:,0], label= 'aggregation, drastic alpha=176', c='orange')
 	plt.plot(d3['lat'],d3[var][0,:,0], label= 'aggregation, taylor', c='yellow')
 	
-	
+	'''
 	# comparison accretion
 	plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
+        plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 	plt.plot(d4['lat'],d4[var][0,:,0], label= 'accretion, taylor - zcolleffi', c='yellowgreen')
 	plt.plot(d5['lat'],d5[var][0,:,0], label= 'accretion, taylor - only accr', c='aqua')
 	plt.plot(d6['lat'],d6[var][0,:,0], label= 'accretion, double taylor', c='orchid')
