@@ -21,26 +21,19 @@ experiments = ['test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual',
 			   'test793_drastic_ws/test793_176', 
 			   'test793_taylor_ws/test793_taylor/annual']
 
-file_name = ['test791_onlyaccr_taylor', 
-			 'test791_taylor', 
-			 'test791_doublesimplification', 
-			 'test793_156', 
-			 'test793_176', 
-			 'test793_taylor']
+file_name = ['accr_taylor', 
+			 'accr_zcolleffi', 
+			 'accr_double', 
+			 '156', 
+			 '176', 
+			 'aggr_taylor']
 
 for j in range(len(experiments)):
 	for i in range(len(parameter)):
 		# Opening netCDF files
-		#default = 2          # added controle case for comparison
-		#run_nr = 1
-		#run_nr2 = 5
-		#run_nr2 = 10
-		run_nr = 1
-		run_nr_diff = 2
-
-		dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/'.format(run_nr)+'multi_annual_means_init_diags_2003-2007'.format(run_nr)+'.nc')
-		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/'.format(run_nr)+'multi_annual_means_' + file_name[j] + '_2003-2003'.format(run_nr)+'.nc')
-		
+		dc = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/ens2003-2007.nc')
+		ds = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/ensstd2003-2007.nc')
+		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/' + experiments[j] + '/zm_' + file_name[j] + '_2003-2003.nc')
 
 		# Access variables, e.g.
 		var = parameter[i]
@@ -48,7 +41,7 @@ for j in range(len(experiments)):
 			unit = ' [%]'
 		elif var == 'CDNC':
 			unit = ' [m-2]'
-		else: 
+		elif var == 'IWP' or 'LWP': 
 			unit = ' [g m-2]'
 			
 		plot_name= 'Zmean_{}_{}_nolegend'.format(var, file_name[j]) # adjust name
@@ -56,19 +49,14 @@ for j in range(len(experiments)):
 
 		fig, ax = plt.subplots(nrows=1, ncols=1)
 
-
-		#plt.plot(d1['lat'],d1[var][0,:,0], label= 'lsimple_aggr_taylor', c='green')
-		#plt.plot(d2['lat'],d2[var][0,:,0], label= 'WBF = 0', c='green')
-		#plt.plot(d3['lat'],d3[var][0,:,0], label= 'WBF, sed = 0', c='red')
 		plt.plot(dc['lat'],dc[var][0,:,0], label= 'default', c='black')
+		plt.fill_between(dc['lat'], dc[var][0,:,0]-ds[var][0,:,0], dc[var][0,:,0]+ds[var][0,:,0])
 		plt.plot(d1['lat'],d1[var][0,:,0], label= file_name[j], c='green')
-
 
 		plt.title(plot_title)
 
 		#plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
 		ax.set_ylabel(var + unit)          #CDNC & ICNC [1/m2] not [1/m3]!
 		ax.set_xlabel('latitude')
-
 
 		plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
