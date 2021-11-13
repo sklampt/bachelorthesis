@@ -30,11 +30,11 @@ for i in range(len(parameter)):
 	# aggr
 	d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_drastic_ws/test793_156/'.format(run_nr)+'zm_156_2003-2003'.format(run_nr)+'.nc') # drastic 156
 	d2 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_drastic_ws/test793_176/'.format(run_nr)+'zm_176_2003-2003'.format(run_nr)+'.nc') # drastic 176
-	d3 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr)+'multi_annual_means_test793_taylor_2003-2003'.format(run_nr)+'.nc') # taylor
+	d3 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test793_taylor_ws/test793_taylor/annual/'.format(run_nr)+'zm_aggr_taylor_2003-2003'.format(run_nr)+'.nc') # taylor
 	# accr
-	d4 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr)+'multi_annual_means_test791_taylor_2003-2003'.format(run_nr)+'.nc') # zcolleffi
-	d5 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual/'.format(run_nr)+'multi_annual_means_test791_onlyaccr_taylor_2003-2003'.format(run_nr)+'.nc') # only accr
-	d6 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_double_ws/test791_taylor_double/'.format(run_nr)+'multi_annual_means_test791_doublesimplification_2003-2003'.format(run_nr)+'.nc') # double
+	d4 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_ws/test791_taylor/annual/'.format(run_nr)+'zm_accr_zcolleffi_2003-2003'.format(run_nr)+'.nc') # zcolleffi
+	d5 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_onlyaccr_ws/test791_taylor_onlyaccr/annual/'.format(run_nr)+'zm_accr_taylor_2003-2003'.format(run_nr)+'.nc') # only accr
+	d6 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/test791_taylor_double_ws/test791_taylor_double/'.format(run_nr)+'zm_accr_double_2003-2003'.format(run_nr)+'.nc') # double
 
 	# Access variables, e.g.
 	var = parameter[i]
@@ -45,9 +45,9 @@ for i in range(len(parameter)):
 	else: 
 		unit = ' [g m-2]'
 		
-	#run_name = 'comparison_all'
+	run_name = 'comparison_all'
 	#run_name = 'comparison_aggregation'
-	run_name = 'comparison_accretion'
+	#run_name = 'comparison_accretion'
 
 	plot_name= 'Zmean_{}_{}'.format(var, run_name) # adjust name
 	plot_title = 'Zonal mean {}'.format(var)
