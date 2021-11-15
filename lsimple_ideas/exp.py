@@ -1,21 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-r_iv = np.arange(8e-6, 1e-4, 1e-6)
-plt.plot(r_iv, np.log10(r_iv*1e4), label= 'log')
+x = np.arange(-9.788129e-17, -0.3, 1e-5)
+#x = np.arange(-4.7, 0, 0.01)
+plt.plot(x, np.exp(x), label= 'exp')
 
 def alpha1(r):
-    r_so = 1e-4 #m
-    x = (r - 1)/(r + 1)
-    logarithm = 2 * (x + x**3/3 + x**5/5)
-    alpha = logarithm/np.log(10)
-    return alpha
+    r = 1 + r
+    return r
 
-result = np.zeros(len(r_iv))
-for i in range(len(r_iv)):
-    result[i] = alpha1(r_iv[i]*1e4)
+result = np.zeros(len(x))
+for i in range(len(x)):
+    result[i] = alpha1(x[i])
 
-plt.plot(r_iv, result, label= 'taylor')
+plt.plot(x, result, label= 'taylor')
 
 plt.legend(bbox_to_anchor=(1,1), loc="upper left")
 plt.show()

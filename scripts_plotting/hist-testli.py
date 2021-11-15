@@ -13,7 +13,6 @@ warnings.simplefilter(action = "ignore", category = RuntimeWarning)
 from pathlib import Path
 import re
 
-#TODO: fill this
 months = {
     1: "jan",
     2: "feb",
@@ -76,11 +75,11 @@ for file in sorted(folder_path.glob('*init_diags_2003*.01_activ*.nc')):
             var = 'alpha'
             unit = ''
 
-            plot_name= 'frequency_{}_{}'.format(var, run_name) # adjust name
+            plot_name= f'frequency_{var}_{run_name}'
 
-            plt.legend(bbox_to_anchor=(1,1), loc="upper left")#, title = 'sed. of cloud ice *') # loc decides location of legend
-            ax.set_ylabel('frequency')          #CDNC & ICNC [1/m2] not [1/m3]!
+            plt.legend(bbox_to_anchor=(1,1), loc="upper left")
+            ax.set_ylabel('frequency')
             ax.set_xlabel(var + unit)
             #ax.set_xscale('log')
 
-            plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/init/alpha/'+'/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
+            plt.savefig(f'/net/n2o/wolke_scratch/sklampt/echam/plots/init/alpha/plot_{plot_name}.pdf', bbox_inches='tight')
