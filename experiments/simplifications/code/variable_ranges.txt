@@ -1,0 +1,34 @@
+### accretion
+    ld_cc(kbdim)        []                        ! logical expression
+    pxib(kbdim)         []                        ! cloud ice in cloudy part of grid box [kg/kg]
+    ll1(kbdim)          []                        ! logical expression
+    pxsp1(kbdim)        []                        ! ???
+    zxsp2(kbdim)        []                        ! snow being formed inside grid box [kg/kg]
+    zxsp(kbdim)         [0., 0.0035]              ! snow mass mixing ratio [kg/kg] //https://www.researchgate.net/figure/Mean-mixing-ratio-profiles-of-a-cloud-ice-b-snow-c-graupel-d-rain-and-e_fig3_322717937
+
+    pqrho(kbdim)        [0.703, 0.873]            ! inverse air density [m3/kg]
+
+    zcolleffi(kbdim)    []                        ! collision efficiency for aggregation (temp dependent)
+                                                  ! comment UP: only used for accretion not aggregation
+
+
+
+### aggregation
+    ptp1(kbdim)         [-51., 17.]               ! temp [celsius] //https://www.weather.gov/jetstream/layers
+    plvdcp(kbdim)       []                        ! latent heat of vaporization div. by specific heat at const pres.
+    pcnd(kbdim)         []                        ! condensation rate [kg/kg]
+    plsdcp
+    pdep
+    ptp1tmp(kbdim)      []                        ! temporary variable of updated temp (t) [K]
+
+    ld_cc(kbdim)        []                        ! logical expression
+    pxib(kbdim)         []                        ! cloud ice in cloudy part of grid box [kg/kg]
+    ll1(kbdim)          []                        ! logical expression
+    zcolleffi(kbdim)    []                        ! collision efficiency for aggregation (temp dependent)
+
+    prho(kbdim)         [1.4224, 1.1455]          ! air density [kg/m3] -25 to 35 celcius //https://en.wikipedia.org/wiki/Density_of_air#:~:text=The%20density%20of%20air%20or,unit%20volume%20of%20Earth's%20atmosphere.&text=At%20101.325%20kPa%20(abs)%20and,ISA%20(International%20Standard%20Atmosphere).
+    pqrho(kbdim)        [0.703, 0.873]            ! inverse air density [m3/kg]
+    zc1(kbdim)          []                        ! temporary variable
+
+    picnc(kbdim)        [0.6e6, 4.7e6]            ! ice crystal number concentration (ICNC) [1/m3] //https://iacweb.ethz.ch/doc/publications/Lohmann-et-al-ERL2008.pdf
+    zris(kbdim)         [0.001, 1.5]              ! size of ice crystals [mm] //clouds.pdf
