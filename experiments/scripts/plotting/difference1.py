@@ -29,11 +29,16 @@ file_name = ['test791_onlyaccr_taylor',
 			 'test793_176', 
 			 'test793_taylor']
 
-simplification_name = ['Accretion - Taylor', 'Accretion - double Taylor', 'Aggregration - Drastic, alpha = 156', 'Aggregation - Drastic, alpha = 176', 'Aggregation - Taylor']
+simplification_name = ['Accretion - Taylor', 
+					   'Accretion - double Taylor', 
+					   'Aggregration - Drastic, alpha = 156', 
+					   'Aggregation - Drastic, alpha = 176', 
+					   'Aggregation - Taylor']
+
 for j in range(len(experiments)):
 	for i in range(len(parameter)):
 		plot_name = str('Diff_'+parameter[i]+ '_' +file_name[j])
-                title = str('Difference of Default model and ' + simplification_name[j])
+		title = str('Difference of Default model and ' + simplification_name[j])
 
 		# Opening netCDF files
 		d1 = Dataset('/net/n2o/wolke_scratch/sklampt/echam/init_diags_ws/years2003-2007/multi_annual_means_init_diags_2003-2007.nc')
@@ -92,6 +97,5 @@ for j in range(len(experiments)):
 		ax.xaxis.set_major_formatter(lon_formatter)
 		ax.yaxis.set_major_formatter(lat_formatter)
 
-                plt.title(title)
-
+		plt.title(title)
 		plt.savefig('/net/n2o/wolke_scratch/sklampt/echam/plots/plot_{}.pdf'.format(plot_name), bbox_inches='tight')
