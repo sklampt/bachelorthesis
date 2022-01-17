@@ -29,8 +29,8 @@ file_name = ['test791_onlyaccr_taylor',
 			 'test793_176', 
 			 'test793_taylor']
 
-simplification_name = ['Accretion - Taylor applied in Collision Efficiency Formulation', 
-					   'Accretion - Taylor applied in Accretion Formulation',
+simplification_name = ['Accretion - Taylor applied in Accretion Formulation',
+					   'Accretion - Taylor applied in Collision Efficiency Formulation', 
 					   'Accretion - Taylor applied in both Formulations', 
 					   'Aggregration - Drastic, alpha = 156', 
 					   'Aggregation - Drastic, alpha = 176', 
